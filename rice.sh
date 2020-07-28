@@ -7,6 +7,10 @@ cd nixos-config
 mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix.bak
 cp ./configuration.nix /etc/nixos.configuration.nix
 
+## Git Config
+git config --global user.name "Jin"
+git config --global user.email "jcguu95@gmail.com"
+
 ## TODO .xinitrc
 ## TODO xmonad & xmobar
 
