@@ -49,7 +49,7 @@
     wget vim sudo manpages gitAndTools.gitFull
     trayer dmenu picom nitrogen
     haskellPackages.xmobar
-    qutebrowser
+    qutebrowser alacritty
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
