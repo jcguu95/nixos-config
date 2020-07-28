@@ -14,7 +14,5 @@ git config --global user.email "jcguu95@gmail.com"
 ## .xinitrc
 echo "ssh-agent xmonad" >> "$/home/jin/.xinitrc"
 
-## TODO Shell Config: zsh
-
 ## TODO xmonad & xmobar
 
