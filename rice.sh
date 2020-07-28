@@ -11,8 +11,10 @@ cp ./configuration.nix /etc/nixos.configuration.nix
 git config --global user.name "Jin"
 git config --global user.email "jcguu95@gmail.com"
 
-## TODO .xinitrc
-
+## .xinitrc
 echo "ssh-agent xmonad" >> "$/home/jin/.xinitrc"
+
+## TODO Shell Config: zsh
+
 ## TODO xmonad & xmobar
 
