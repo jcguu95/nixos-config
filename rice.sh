@@ -12,3 +12,5 @@ mkdir $HOME/.xmonad
 ln -sf $(pwd)/xmonad.hs $HOME/.xmonad
 xmonad --recompile
 
+ln -sf $(pwd)/xmobarrc $HOME/.xmobarrc
+
