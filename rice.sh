@@ -2,7 +2,7 @@
 git config --global user.name "Jin"
 git config --global user.email "jcguu95@gmail.com"
 
-## .xinitrc
+## X11 Config
 echo "ssh-agent xmonad" >> "/home/jin/.xinitrc"
 
 ## TODO xmonad & xmobar
