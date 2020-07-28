@@ -8,9 +8,10 @@ git config --global user.email "jcguu95@gmail.com"
 echo "ssh-agent xmonad" >> "/home/jin/.xinitrc"
 
 ## xmonad & xmobar
+### xmonad
 mkdir $HOME/.xmonad
 ln -sf $(pwd)/xmonad.hs $HOME/.xmonad
 xmonad --recompile
-
+### xmobar
 ln -sf $(pwd)/xmobarrc $HOME/.xmobarrc
 
