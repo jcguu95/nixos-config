@@ -1,6 +1,5 @@
 # Run this as root after rebooting from a clean installation of nixOS
 
-## System Config 
 nix-env -iA nixos.git
 git clone https://github.com/jcguu95/nixos-config
 nix-env -e nixos.git
