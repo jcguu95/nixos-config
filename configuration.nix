@@ -53,7 +53,7 @@
     wget vim neovim sudo manpages gitAndTools.gitFull
     trayer dmenu picom nitrogen
     haskellPackages.xmobar
-    qutebrowser alacritty
+    qutebrowser alacritty htop ranger
   ];
 
   environment.variables.EDITOR = "nvim";
