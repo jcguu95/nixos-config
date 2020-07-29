@@ -128,21 +128,32 @@
         haskellPackages.xmonad-extras
         haskellPackages.xmonad
       ];
-### See this issue: https://github.com/Lenivaya/dotfiles/issues/1
-#     haskellPackages = pkgs.unstable.haskellPackages;
-#################################################################
     };
     desktopManager.xterm.enable = false;
     displayManager.startx.enable = true;
   };
 
-### See this issue: https://github.com/Lenivaya/dotfiles/issues/1
-# nixpkgs.overlays = [
-#   (self: super:
-#     with super; {
-#         unstable = import <unstable> { inherit config; };
-#     })
-# ];
+# To use Lenivaya's gorgeous setup, enable the followings:
+#
+# cf. this issue: https://github.com/Lenivaya/dotfiles/issues/1
+# rmk. you might also want to download all configs to ~/.configs for it to work
+# properly.
+#
+#  services.xserver = {
+#    windowManager.xmonad = {
+#      extraPackages = haskellPackages: [
+#        haskellPackages.gloss
+#      ];
+#      haskellPackages = pkgs.unstable.haskellPackages;
+#    };
+#
+#  nixpkgs.overlays = [
+#    (self: super:
+#      with super; {
+#          unstable = import <unstable> { inherit config; };
+#      })
+#  ];
+#
 #################################################################
 
 }
