@@ -1,16 +1,16 @@
 
-xmonad.hs:63:20: warning: [-Wdeprecations]
+xmonad.hs:62:20: warning: [-Wdeprecations]
     In the use of ‘defaultConfig’
     (imported from XMonad, but defined in XMonad.Config):
     Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
    |
-63 |     xmonad $ docks defaultConfig
+62 |     xmonad $ docks defaultConfig
    |                    ^^^^^^^^^^^^^
 
-xmonad.hs:64:49: warning: [-Wdeprecations]
+xmonad.hs:63:49: warning: [-Wdeprecations]
     In the use of ‘defaultConfig’
     (imported from XMonad, but defined in XMonad.Config):
     Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
    |
-64 |         { layoutHook = avoidStruts $ layoutHook defaultConfig
+63 |         { layoutHook = avoidStruts $ layoutHook defaultConfig
    |                                                 ^^^^^^^^^^^^^

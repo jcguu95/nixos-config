@@ -128,9 +128,22 @@
         haskellPackages.xmonad-extras
         haskellPackages.xmonad
       ];
+### See this issue: https://github.com/Lenivaya/dotfiles/issues/1
+#     haskellPackages = pkgs.unstable.haskellPackages;
+#################################################################
     };
     desktopManager.xterm.enable = false;
     displayManager.startx.enable = true;
   };
+
+### See this issue: https://github.com/Lenivaya/dotfiles/issues/1
+# nixpkgs.overlays = [
+#   (self: super:
+#     with super; {
+#         unstable = import <unstable> { inherit config; };
+#     })
+# ];
+#################################################################
+
 }
 
