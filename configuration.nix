@@ -53,7 +53,22 @@
     wget vim neovim sudo manpages gitAndTools.gitFull
     trayer dmenu picom nitrogen
     haskellPackages.xmobar
-    qutebrowser alacritty htop ranger
+    qutebrowser alacritty htop ranger unzip
+  ];
+
+  # Despite looking like normal packages, simply adding these font packages to
+  # your environment.systemPackages won't make the fonts accessible to
+  # applications. To achieve that, put these packages in the fonts.fonts NixOS
+  # options list instead.
+  # - source :: https://nixos.wiki/wiki/Fonts
+  fonts.fonts = with pkgs; [
+    hack-font
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    liberation_ttf
+    fira-code
+    fira-code-symbols
   ];
 
   environment.variables.EDITOR = "nvim";

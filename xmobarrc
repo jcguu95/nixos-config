@@ -1,15 +1,23 @@
-Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
-       , bgColor = "black"
-       , fgColor = "grey"
-       , position = TopW L 90
-       , commands = [ Run Weather "EGPF" ["-t"," <tempF>F","-L","64","-H","77","--normal","green","--high","red","--low","lightblue"] 36000
-                    , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
-                    , Run Swap [] 10
-                    , Run Date "%a %b %_d %l:%M" "date" 10
+-- XMobar config
+--
+Config { font    = "xft:Liberation Mono:pixelsize=10:antialias=true:hinting=true"
+       , alpha   = 40
+       , bgColor = "#444444"
+       , fgColor = "#d7d7d7"
+       , position = Top
+       , lowerOnStart = True
+       , hideOnStart = False
+       , allDesktops = True
+       , persistent = True
+       , iconRoot = "/home/jin/.xmonad/xpm/"
+       , commands = [ Run Date "[%Y-%m-%d %a %H:%M:%S]" "date" 10
+                    , Run Network "enp0s3" ["-t", "<icon=net_up_20.xpm/>up <rxbar> <icon=net_down_20.xpm/>dn <txbar>"] 10
+                    , Run Cpu ["-t", "cpu(<total>%)","-H","50","--high","red"] 10
+                    , Run Memory ["-t", "mem(<usedratio>%)"] 10
+                    , Run DiskU [("/", "hdd(<used>)")] [] 3600
                     , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% * %swap%    <fc=#ee9a00>%date%</fc> | %EGPF%"
+       , template = " <icon=haskell_20.xpm/> | %StdinReader% }{ %network% <fc=#ffff5f>%cpu%</fc> <fc=#ff5f87>%memory%</fc> <fc=#87afd7>%disku%</fc> <fc=#afd75f>%date%</fc> "
        }

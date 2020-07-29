@@ -9,8 +9,8 @@ echo "ssh-agent xmonad" >> "/home/jin/.xinitrc"
 
 ## xmonad & xmobar
 ### xmonad
-mkdir $HOME/.xmonad
-ln -sf $(pwd)/xmonad.hs $HOME/.xmonad
+mv $HOME/.xmonad $HOME/.xmonad_bak
+ln -sf $(pwd)/.xmonad $HOME/.xmonad
 xmonad --recompile
 ### xmobar
 ln -sf $(pwd)/xmobarrc $HOME/.xmobarrc
