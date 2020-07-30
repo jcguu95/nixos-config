@@ -27,6 +27,11 @@ echo "Configuring xmobar.."
 ln -sf $(pwd)/xmobarrc $HOME/.xmobarrc
 echo "Done."
 
+## alacritty
+echo "Configuring alacritty.."
+mkdir $HOME/.config
+ln -sf $(pwd)/alacritty.yml $HOME/.config
+echo "Done."
 
 ## TODO Luke Smith's st
 #
