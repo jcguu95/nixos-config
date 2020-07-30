@@ -156,5 +156,27 @@
 #
 #################################################################
 
+console.font = "Lat2-Terminus16";
+
+# Default Color (I love it but don't know its color codes.)
+console.colors = []; # TODO: Find out its color codes!
+
+# Dark Gruvbox
+#console.colors = [ "282828" "cc241d" "98971a" "d79921"
+#                   "458588" "b16286" "689d6a" "a89984"
+#                   "928374" "fb4934" "b8bb26" "fabd2f"
+#                   "83a598" "d3869b" "83c07c" "ebdbb2" ];
+
+# Example colors given in the manpage
+#console.colors = [ "002b36" "dc322f" "859900" "b58900"
+#                   "268bd2" "d33682" "2aa198" "eee8d5"
+#                   "002b36" "cb4b16" "586e75" "657b83"
+#                   "839496" "6c71c4" "93a1a1" "fdf6e3" ];
+
+#console.colors = [ "3A3C43" "BE3E48" "869A3A" "C4A535"
+#                   "4E76A1" "855B8D" "568EA3" "B8BCB9"
+#                   "888987" "FB001E" "0E712E" "C37033"
+#                   "176CE3" "FB0067" "2D6F6C" "FCFFB8" ];
+
 }
 
