@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -63,6 +63,7 @@
   # - source :: https://nixos.wiki/wiki/Fonts
   fonts.fonts = with pkgs; [
     terminus_font ## This is the font I like, use `fc-list | grep Terminus` to see its name <3
+    unifont
     # hack-font noto-fonts noto-fonts-cjk noto-fonts-emoji
     # liberation_ttf fira-code fira-code-symbols mplus-outline-fonts
     # dina-font proggyfonts source-code-pro
