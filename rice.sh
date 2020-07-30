@@ -6,10 +6,14 @@ git config --global user.name "Jin"
 git config --global user.email "jcguu95@gmail.com"
 echo "Done."
 
+
+
 ## X11 Config
 echo "Configuring X11.."
 echo "ssh-agent xmonad" >> "/home/jin/.xinitrc"
 echo "Done."
+
+
 
 ## xmonad & xmobar
 ### xmonad
@@ -23,7 +27,15 @@ echo "Configuring xmobar.."
 ln -sf $(pwd)/xmobarrc $HOME/.xmobarrc
 echo "Done."
 
+
+## TODO Luke Smith's st
+#
+#
+#
+## TODO Luke Smith's st
+
+
+## ALL DONE! Fade off..
 echo "All done. Exit in 5 seconds.."; sleep 5;
 
 exit
-
