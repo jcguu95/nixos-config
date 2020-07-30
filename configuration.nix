@@ -61,13 +61,31 @@
   # applications. To achieve that, put these packages in the fonts.fonts NixOS
   # options list instead.
   # - source :: https://nixos.wiki/wiki/Fonts
-  fonts.fonts = with pkgs; [
-    terminus_font ## This is the font I like, use `fc-list | grep Terminus` to see its name <3
-    unifont
+  fonts = {
+    enableDefaultFonts = true;
+    fonts = with pkgs; [
+      terminus_font ## This is the font I like, use `fc-list | grep Terminus` to see its name <3
+      unifont
+      wqy_microhei
+      wqy_zenhei
+      noto-fonts-emoji
+    ];
+
+    fontconfig.penultimate.enable = false;
+    fontconfig.defaultFonts = {
+      # IMO WQY Zen Hei plays slightly better with Terminus
+      serif     = ["Terminus" "WenQuanYi Zen Hei" "Unifont" "WenQuanYi Micro Hei"];
+      sansSerif = ["Terminus" "WenQuanYi Zen Hei" "Unifont" "WenQuanYi Micro Hei"];
+      monospace = ["Terminus" "WenQuanYi Zen Hei" "Unifont" "WenQuanYi Micro Hei"];
+    };
+  };
+  #fonts.fonts = with pkgs; [
+    #terminus_font 
+    #unifont
     # hack-font noto-fonts noto-fonts-cjk noto-fonts-emoji
     # liberation_ttf fira-code fira-code-symbols mplus-outline-fonts
     # dina-font proggyfonts source-code-pro
-  ];
+  #];
 
   environment.variables.EDITOR = "nvim";
 

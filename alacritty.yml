@@ -1,26 +1,3 @@
-font:
-  normal:
-    family: "Terminus"
-  bold:
-    family: "Terminus"
-
-    # Problem: Terminus > Unifonts in English.. but to make CJK good.. I need
-    # Unifonts. How to enable unifonts only for specific fonts?
-    #
-    # はそれを遂行できる立場にありません。 チームの努力により、 Arch Linux
-    # のスタッフは今後のリーダーを決定する新しいプロセスを考案しました。
-    #
-    # LCTT的man页面翻译计划。 自從寫完「我如何設計個人化 Notion
-    # ：打造數位分身」之後，就有不少朋友跟我詢問是否有提供模板可以參考
-    # 要從頭到尾自己直接打造一個完整的工作空間，確實需要花不少的時間。
-    # 因此，為了讓一些朋友可以更快地上手，我就把四個比較有趣的頁面整理
-    # template，也宣傳一下自己的 newsletter 《Poetic
-    # Machine》（人機交合）。若是想要得到 template
-    # 連結的朋友，請在訂閱之後傳一封 email
-    # 到我的信箱（下有連結），跟我索取連結！歡迎順便傳送一些回饋、鼓勵 
-    #
-    # Envoyé spécial 
- 
 colors:
   primary:
     background: '0x282828'
