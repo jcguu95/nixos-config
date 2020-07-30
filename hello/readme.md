@@ -1,4 +1,4 @@
-This package is for self-educational purpose.
+Taken from github/zetavg, this package is for self-educational purpose.
 
 TODO
 
