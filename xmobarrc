@@ -1,6 +1,6 @@
 -- XMobar config
 --
-Config { font    = "xft:Liberation Mono:pixelsize=10:antialias=true:hinting=true"
+Config { font    = "xft:Terminus:pixelsize=10:antialias=true:hinting=true"
        , alpha   = 40
        , bgColor = "#444444"
        , fgColor = "#d7d7d7"
