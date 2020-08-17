@@ -14,6 +14,8 @@ in {
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
+
+      #./qutebrowser.nix ## TODO still not working. don't know why.
       (import "${home-manager}/nixos")
     ];
 
@@ -180,7 +182,7 @@ in {
       userEmail = "jcguu95@gmail.com"; 
     };
 
-    programs.vim = { ### TODO this doesn't work yet
+    programs.vim = { 
       enable = true;
       extraConfig = builtins.readFile /home/jin/.config/vim/vimrc;
       settings = {

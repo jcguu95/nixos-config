@@ -1,10 +1,11 @@
 # Should be run after a clean installation of nixOS and `pre-rice.sh`.
 
 ## Git Config
-echo "Configuring git.."
-git config --global user.name "Jin"
-git config --global user.email "jcguu95@gmail.com"
-echo "Done."
+#echo "Configuring git.."
+#git config --global user.name "Jin"
+#git config --global user.email "jcguu95@gmail.com"
+#echo "Done."
+## taken care by home-manager <3
 
 
 
