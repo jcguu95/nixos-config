@@ -52,6 +52,12 @@
     trayer dmenu picom nitrogen
     haskellPackages.xmobar
     qutebrowser alacritty htop ranger unzip
+
+    irssi xcape zathura ghostscript emacs mupdf tree fzf less ledger maim ripgrep rsync imagemagick
+
+    #unrar ## -- taken away as it's not free
+    unzip xz zip firefox
+    vlc mpv
   ];
 
   # Despite looking like normal packages, simply adding these font packages to
@@ -145,6 +151,17 @@
     };
     desktopManager.xterm.enable = false;
     displayManager.startx.enable = true;
+    xkbOptions = "ctrl:nocaps"; # now capslock means countrol :)
+  };
+
+  systemd.user.services."xcape" = {
+    enable = true;
+    description = "xcape to use CTRL as ESC when pressed alone";
+    wantedBy = ["default.target"];
+    serviceConfig.Type = "forking";
+    serviceConfig.Restart = "always";
+    serviceConfig.RestartSec = 2;
+    serviceConfig.ExecStart = "${pkgs.xcape}/bin/xcape";
   };
 
 # To use Lenivaya's gorgeous setup, enable the followings:
