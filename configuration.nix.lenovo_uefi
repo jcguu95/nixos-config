@@ -4,10 +4,17 @@
 
 { config, pkgs, ... }:
 
-{
+let
+  home-manager = builtins.fetchGit {
+    url = "https://github.com/rycee/home-manager.git";
+    rev = "dd94a849df69fe62fe2cb23a74c2b9330f1189ed"; # CHANGEME 
+    ref = "release-18.09";
+  }; 
+in {
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
+      (import "${home-manager}/nixos")
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -57,7 +64,7 @@
 
     #unrar ## -- taken away as it's not free
     unzip xz zip firefox
-    vlc mpv
+    vlc mpv 
   ];
 
   # Despite looking like normal packages, simply adding these font packages to
@@ -118,7 +125,9 @@
   # hardware.pulseaudio.enable = true;
 
   # Enable touchpad support.
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
+  services.xserver.libinput.middleEmulation = true;
+  services.xserver.libinput.tapping = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jin = {
@@ -164,6 +173,13 @@
     serviceConfig.ExecStart = "${pkgs.xcape}/bin/xcape";
   };
 
+  home-manager.users.jin = { 
+    programs.git = {
+      enable = true; 
+      userName = "jcguu95";
+      userEmail = "jcguu95@gmail.com"; 
+    };
+  };
 # To use Lenivaya's gorgeous setup, enable the followings:
 #
 # cf. this issue: https://github.com/Lenivaya/dotfiles/issues/1
@@ -208,6 +224,5 @@ console.colors = []; # TODO: Find out its color codes!
 #                   "4E76A1" "855B8D" "568EA3" "B8BCB9"
 #                   "888987" "FB001E" "0E712E" "C37033"
 #                   "176CE3" "FB0067" "2D6F6C" "FCFFB8" ];
-
+#
 }
-
