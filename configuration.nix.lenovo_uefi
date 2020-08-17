@@ -179,6 +179,31 @@ in {
       userName = "jcguu95";
       userEmail = "jcguu95@gmail.com"; 
     };
+
+    programs.vim = { ### TODO this doesn't work yet
+      enable = true;
+      extraConfig = builtins.readFile /home/jin/.config/vim/vimrc;
+      settings = {
+        relativenumber = true;
+	number = true;
+      };
+      plugins = [
+        "idris-vim"
+	"sensible"
+	"vim-airline"
+	"The_NERD_tree" # file system explorer
+	"fugitive" "vim-gitgutter" #git
+      ];
+    };
+
+    programs.zsh = {
+      enable = true;
+      enableAutosuggestions = true;
+      enableCompletion = true;
+      dotDir = ".config/zsh";
+      history.extended = true;
+      history.path = "/home/jin/.zsh_history";
+    };
   };
 # To use Lenivaya's gorgeous setup, enable the followings:
 #
