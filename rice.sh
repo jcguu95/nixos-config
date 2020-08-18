@@ -11,6 +11,7 @@
 
 ## X11 Config
 echo "Configuring X11.."
+echo "killall xcape 2>/dev/null ; xcape -e 'Control_L=Escape'" >> "/home/jin/.xinitrc"
 echo "ssh-agent xmonad" >> "/home/jin/.xinitrc"
 echo "Done."
 

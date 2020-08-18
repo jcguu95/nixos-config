@@ -51,7 +51,14 @@ in {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
+    interactiveShellInit=''
+      [ -z "$HISTFILE" ] && HISTFILE="$HOME/.config/zsh/.zsh_hist"
+      HISTFILESIZE=50000
+      HISTSIZE=50000
+      SAVEHIST=50000
+    '';
   };
 
   # List packages installed in system profile. To search, run:
@@ -137,6 +144,7 @@ in {
   services.xserver.libinput.middleEmulation = true;
   services.xserver.libinput.tapping = true;
 
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jin = {
     isNormalUser = true;
@@ -168,17 +176,8 @@ in {
     };
     desktopManager.xterm.enable = false;
     displayManager.startx.enable = true;
-    xkbOptions = "ctrl:nocaps"; # now capslock means countrol :)
-  };
-
-  systemd.user.services."xcape" = {
-    enable = true;
-    description = "xcape to use CTRL as ESC when pressed alone";
-    wantedBy = ["default.target"];
-    serviceConfig.Type = "forking";
-    serviceConfig.Restart = "always";
-    serviceConfig.RestartSec = 2;
-    serviceConfig.ExecStart = "${pkgs.xcape}/bin/xcape";
+    # capslock => control ==> esc
+    xkbOptions = "ctrl:nocaps"; # now capslock means control :)
   };
 
   home-manager.users.jin = { 
@@ -188,11 +187,11 @@ in {
       enable = true;
       configFile = {
         "qutebrowser/config.py".text =
-          builtins.readFile "${dot}/config/qutebrowser/config.py";
+          builtins.readFile "${dot}/.config/qutebrowser/config.py";
 	"qutebrowser/void.html".text =
-          builtins.readFile "${dot}/config/qutebrowser/void.html";
+          builtins.readFile "${dot}/.config/qutebrowser/void.html";
 	"qutebrowser/quickmarks".text =
-          builtins.readFile "${dot}/config/qutebrowser/quickmarks";
+          builtins.readFile "${dot}/.config/qutebrowser/quickmarks";
       };
     };
 
@@ -224,7 +223,7 @@ in {
       enableCompletion = true;
       dotDir = ".config/zsh";
       history.extended = true;
-      history.path = "/home/jin/.zsh_history";
+      history.path = ".config/zsh/.zsh_history";
     };
   };
 # To use Lenivaya's gorgeous setup, enable the followings:
