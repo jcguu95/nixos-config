@@ -1,22 +1,5 @@
 # Should be run after a clean installation of nixOS and `pre-rice.sh`.
 
-## Git Config
-#echo "Configuring git.."
-#git config --global user.name "Jin"
-#git config --global user.email "jcguu95@gmail.com"
-#echo "Done."
-## taken care by home-manager <3
-
-
-
-## X11 Config
-echo "Configuring X11.."
-echo "killall xcape 2>/dev/null ; xcape -e 'Control_L=Escape'" >> "/home/jin/.xinitrc"
-echo "ssh-agent xmonad" >> "/home/jin/.xinitrc"
-echo "Done."
-
-
-
 ## xmonad & xmobar
 ### xmonad
 echo "Configuring xmonad.."

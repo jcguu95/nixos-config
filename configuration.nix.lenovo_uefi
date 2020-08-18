@@ -10,7 +10,7 @@ let
     rev = "dd94a849df69fe62fe2cb23a74c2b9330f1189ed"; # CHANGEME 
     ref = "release-18.09";
   }; 
-  dot = "/home/jin/nixos-config";
+  dot = "/home/jin/nixos-config/.dotfiles";
 in {
   imports =
     [ # Include the results of the hardware scan.
@@ -182,6 +182,11 @@ in {
 
   home-manager.users.jin = { 
     programs.home-manager.enable = true;
+
+    home.file = {
+      ".xinitrc".text =
+        builtins.readFile "${dot}/.xinitrc";
+    };
 
     xdg = {
       enable = true;
