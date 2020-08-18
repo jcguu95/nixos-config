@@ -1,4 +1,5 @@
 ### Currently works for my lenovo laptop (on UEFI).
+### Only need to change boot.loader for it to compile a BIOS loader :)
 
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
@@ -63,7 +64,7 @@ in {
 
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
-    gcc binutils nix
+    gcc binutils nix feh
     wget vim neovim sudo manpages gitAndTools.gitFull
     trayer dmenu picom nitrogen
     haskellPackages.xmobar
@@ -178,7 +179,8 @@ in {
     };
     desktopManager.xterm.enable = false;
     displayManager.startx.enable = true;
-    # capslock => control ==> esc
+    # displayManager.sessionCommands = ''feh --bg-fill ~/wall.png''; ## TODO doesn't work figure out why!
+    # capslock => control 
     xkbOptions = "ctrl:nocaps"; # now capslock means control :)
   };
 
