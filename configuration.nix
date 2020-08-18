@@ -1,3 +1,5 @@
+### Currently works for my lenovo laptop (on UEFI).
+
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
@@ -10,7 +12,7 @@ let
     rev = "dd94a849df69fe62fe2cb23a74c2b9330f1189ed"; # CHANGEME 
     ref = "release-18.09";
   }; 
-  dot = "/home/jin/nixos-config/.dotfiles";
+  dot = "/home/jin/nixos-config/.dotfiles"; ### should be changed manually while running the first time after fresh installing nixos
 in {
   imports =
     [ # Include the results of the hardware scan.
@@ -221,7 +223,7 @@ in {
 
     programs.vim = { 
       enable = true;
-      extraConfig = builtins.readFile /home/jin/.config/vim/vimrc;
+      #extraConfig = builtins.readFile /home/jin/.config/vim/vimrc;
       settings = {
         relativenumber = true;
 	number = true;
@@ -245,6 +247,7 @@ in {
     };
   };
 # To use Lenivaya's gorgeous setup, enable the followings:
+# (admittedly I haven't figured it out fully.)
 #
 # cf. this issue: https://github.com/Lenivaya/dotfiles/issues/1
 # rmk. you might also want to download all configs to ~/.configs for it to work
