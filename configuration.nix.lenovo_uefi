@@ -186,8 +186,14 @@ in {
 
     xdg = {
       enable = true;
-      configFile."qutebrowser/config.py".text =
-        builtins.readFile "${dot}/config/qutebrowser/config.py";
+      configFile = {
+        "qutebrowser/config.py".text =
+          builtins.readFile "${dot}/config/qutebrowser/config.py";
+	"qutebrowser/void.html".text =
+          builtins.readFile "${dot}/config/qutebrowser/void.html";
+	"qutebrowser/quickmarks".text =
+          builtins.readFile "${dot}/config/qutebrowser/quickmarks";
+      };
     };
 
     programs.git = {
