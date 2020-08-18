@@ -4,18 +4,12 @@
 ### xmonad
 echo "Configuring xmonad.."
 mv $HOME/.xmonad $HOME/.xmonad_bak
-ln -sf $(pwd)/.xmonad $HOME/.xmonad
+ln -sf $(pwd)/.dotfiles/.xmonad $HOME/.xmonad
 xmonad --recompile
 echo "Done."
 ### xmobar
 echo "Configuring xmobar.."
-ln -sf $(pwd)/xmobarrc $HOME/.xmobarrc
-echo "Done."
-
-## alacritty
-echo "Configuring alacritty.."
-mkdir $HOME/.config
-ln -sf $(pwd)/alacritty.yml $HOME/.config
+ln -sf $(pwd)/.dotfiles/.xmobarrc $HOME/.xmobarrc
 echo "Done."
 
 ## TODO Luke Smith's st

@@ -186,20 +186,15 @@ in {
     programs.home-manager.enable = true;
 
     home.file = {
-      ".xinitrc".text =
-        builtins.readFile "${dot}/.xinitrc";
-    };
+      ".xinitrc".text = builtins.readFile "${dot}/.xinitrc";
+      ".config/alacritty.yml".text = builtins.readFile "${dot}/alacritty.yml";
 
-    xdg = {
-      enable = true;
-      configFile = {
-        "qutebrowser/config.py".text =
-          builtins.readFile "${dot}/.config/qutebrowser/config.py";
-	"qutebrowser/void.html".text =
-          builtins.readFile "${dot}/.config/qutebrowser/void.html";
-	"qutebrowser/quickmarks".text =
-          builtins.readFile "${dot}/.config/qutebrowser/quickmarks";
-      };
+      ".config/qutebrowser/config.py".text =
+        builtins.readFile "${dot}/.config/qutebrowser/config.py";
+      ".config/qutebrowser/void.html".text =
+        builtins.readFile "${dot}/.config/qutebrowser/void.html";
+      ".config/qutebrowser/quickmarks".text =
+        builtins.readFile "${dot}/.config/qutebrowser/quickmarks";
     };
 
     programs.git = {
