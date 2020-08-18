@@ -15,8 +15,6 @@ in {
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
-
-      #./qutebrowser.nix ## TODO still not working. don't know why.
       (import "${home-manager}/nixos")
     ];
 
@@ -197,13 +195,14 @@ in {
         builtins.readFile "${dot}/.config/qutebrowser/quickmarks";
 
       # below we configure ranger..
-      # TODO need to make scope.sh executable :(
       ".config/ranger/commands.py".text =
         builtins.readFile "${dot}/.config/ranger/commands.py";
       ".config/ranger/rc.conf".text =
         builtins.readFile "${dot}/.config/ranger/rc.conf";
-      ".config/ranger/scope.sh".text =
-        builtins.readFile "${dot}/.config/ranger/scope.sh";
+      ".config/ranger/scope.sh" = {
+          text = builtins.readFile "${dot}/.config/ranger/scope.sh";
+	  executable = true;
+      };
       ".config/ranger/shortcuts_jin.conf".text =
         builtins.readFile "${dot}/.config/ranger/shortcuts_jin.conf";
       ".config/ranger/luke_ranger_readme.md".text =
