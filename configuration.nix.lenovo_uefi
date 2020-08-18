@@ -10,6 +10,7 @@ let
     rev = "dd94a849df69fe62fe2cb23a74c2b9330f1189ed"; # CHANGEME 
     ref = "release-18.09";
   }; 
+  dot = "/home/jin/nixos-config";
 in {
   imports =
     [ # Include the results of the hardware scan.
@@ -100,7 +101,10 @@ in {
     # dina-font proggyfonts source-code-pro
   #];
 
-  environment.variables.EDITOR = "nvim";
+  environment.variables = {
+    EDITOR = "vim";
+    BROWSER = "qutebrowser";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -123,8 +127,10 @@ in {
   # services.printing.enable = true;
 
   # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  #   config volume interactively using alsamixer
+  sound.enable = true;
+  hardware.pulseaudio.enable = true; 
+  users.extraUsers.jin.extraGroups = [ "audio" ]; 
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
@@ -176,6 +182,14 @@ in {
   };
 
   home-manager.users.jin = { 
+    programs.home-manager.enable = true;
+
+    xdg = {
+      enable = true;
+      configFile."qutebrowser/config.py".text =
+        builtins.readFile "${dot}/config/qutebrowser/config.py";
+    };
+
     programs.git = {
       enable = true; 
       userName = "jcguu95";
