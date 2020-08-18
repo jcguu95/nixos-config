@@ -62,7 +62,6 @@ in {
   };
 
   # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     gcc binutils nix
     wget vim neovim sudo manpages gitAndTools.gitFull
@@ -70,7 +69,10 @@ in {
     haskellPackages.xmobar
     qutebrowser alacritty htop ranger unzip
 
-    irssi xcape zathura ghostscript emacs mupdf tree fzf less ledger maim ripgrep rsync imagemagick
+    irssi xcape zathura ghostscript 
+    emacs mupdf tree fzf less ledger 
+    maim ripgrep rsync imagemagick
+    gnupg youtube-dl sxiv xclip xsel hack-font curl ffmpeg tree
 
     #unrar ## -- taken away as it's not free
     unzip xz zip firefox
