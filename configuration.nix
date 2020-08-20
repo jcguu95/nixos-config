@@ -69,13 +69,15 @@ in {
     wpa_supplicant_gui gcc binutils nix feh i3lock
     wget vim neovim sudo manpages gitAndTools.gitFull
     trayer dmenu rofi scrot picom nitrogen
-    haskellPackages.xobar
+    haskellPackages.xmobar
     qutebrowser alacritty htop ranger unzip
 
     irssi xcape zathura ghostscript 
     emacs mupdf tree fzf less ledger 
     maim ripgrep rsync imagemagick
     gnupg youtube-dl sxiv xclip xsel hack-font curl ffmpeg tree
+
+    ueberzug # image previewer in ranger
 
     #unrar ## -- taken away as it's not free
     unzip xz zip firefox
