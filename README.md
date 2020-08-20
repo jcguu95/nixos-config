@@ -2,7 +2,7 @@
 
 ## TODOs
 
-+ Import scripts, especially the recording tools and `dmenu`.
++ Setup `dmenu` and recording tools. 
 + Setup `nvim`.
 + Setup `ssh` and a listening server.
 
