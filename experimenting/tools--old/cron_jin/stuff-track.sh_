@@ -1,0 +1,24 @@
+#!/bin/sh
+## This helps me track what stuff I have..
+## It only tracks file names but not contents.
+
+## this code is not safe and is currently paused.
+
+logDir="$HOME/.local/share/stuff-track"
+[ -d "$logDir" ] || { mkdir "$logDir" ; echo "Created log directory: $logDir" ;}
+
+cd "$logDir"
+[ -d "./.git" ] || git init
+
+case "$1" in
+	--show) git show ;;
+	*     ) find ~/+GARAGE/* > GARAGE.txt
+		find ~/+INBOX/* > INBOX.txt
+		find ~/+NOTES/* > NOTES.txt
+		find ~/+TO-FILES/* > TO-FILES.txt
+		git add .
+		git commit -m "Auto-commit by stuff-track.sh"
+		git show  ;;
+esac
+
+exit

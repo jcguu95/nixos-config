@@ -1,0 +1,71 @@
+#!/bin/bash
+## This is a primitive script that asks me questions and logs answers.
+
+maindir="$HOME/.nb/qa/"
+cd $maindir
+
+ask() {
+	object="$1" 								# Pass the parameter into the function
+	LogFile="$object".csv
+	ScheduledTime=$( date --date="$2" )					# Set the time for the question to be asked
+	ScheduledTimeEpoch=$( date --date="$ScheduledTime" +%s )		# .. and convert to seconds after epoch.
+
+	QuestionFile="$object".txt ; touch "$QuestionFile"			# Locate the file that stores the question
+	Question=$(cat $QuestionFile)						# Read the question from the question file
+
+	if [[ $(last_log_time $object) -lt $ScheduledTimeEpoch ]] ; then	# Compare the two above..
+		read -p "$Question .. : " Answer				# Ask the question if haven't answer "for a while"
+		read -p "--remark: " Remark
+		echo ""
+		AppendLine="$(date -Is),$Question,$Answer,$Remark" ; echo "$AppendLine" >> $LogFile
+	fi
+
+}
+
+last_log_time() {
+	LogFile="$1".csv							# Locate the file that stores the answer
+	LastLogTime=$( tail -n 1 "$LogFile" | awk -v FS=, '{print $1}' )	# Read the timestamp of the last answer
+	LastLogTimeEpoch=$( date --date="$LastLogTime" +%s )			# .. and convert to seconds after epoch.
+	echo "$LastLogTimeEpoch"
+}
+
+main() {
+	if [[ "$1" == "-f" ]]; then						# mode: force
+		ask "$2" "today 23:59"						# force asking question
+		exit
+	fi
+
+	if [[ "$1" == "-l" ]]; then						# mode: list
+		echo "$(ls *.txt)" | grep "$2" | sed 's/.txt//'			# list question with keyword
+		exit
+	fi
+
+	now=$(date +%H)
+	questionlist_perhour=( "mental-state" "physical-state" "motivated" "brainfog" "whatsup")
+	questionlist_6am=( "sleep" "wake" \
+			   "leave-school" "arrive-school" \
+			   "exercise" "yoga" "stretch" "meditate" \
+			   "consume-caffeine" "consume-sweets" "eat-too-much" \
+			   "be-nice" "rel-with-gf" )
+	questionlist_3pm=( "nice-thing" "consume" )
+
+	for object in ${questionlist_perhour[@]}; do
+		ask "$object" "last hour"
+	done
+
+	if [[ ! $now < 06 ]]; then
+		for object in ${questionlist_6am[@]}; do
+			ask "$object" "today 6:00"
+		done
+	fi
+
+	if [[ ! $now < 15 ]]; then
+		for object in ${questionlist_3pm[@]}; do
+			ask "$object" "today 15:00"
+		done
+	fi
+}
+
+main "$@"
+
+exit

@@ -1,0 +1,106 @@
+#!/bin/bash
+
+### Content ###
+# This shell script restricts myself from
+# impulsively checking my email too frequently.
+#
+# After running mail check command, the current time will
+# be recorded in the end of this script.
+
+### Config ###
+mercy=28800 # in second
+
+### Main Script ###
+scriptDir=$HOME/.scripts/checkmail
+currentTime=$(date '+%s' -d $(date -Is))
+lastlastCheckTime=$(cat $scriptDir | tail -2 | head -1 | sed '/^\# */!d; s///;q')
+timeDiff=$(($currentTime - $lastlastCheckTime))
+
+if [[ $timeDiff -gt $mercy ]]; then
+	mbsync -c ~/.emacs.d/.mbsyncrc gmail
+	echo "# $currentTime" >> $scriptDir
+else
+	echo "You check your mail too frequently --"
+	echo "check it again $(($mercy - $timeDiff)) seconds later!"
+	echo "  or change config in $scriptDir."
+	echo "Exiting in 5 seconds.."
+	sleep 5
+fi
+
+exit
+
+### checkmail history (unit: linux epoch time) ###
+# 1572789737
+# 1572822123
+# 1572881825
+# 1572911159
+# 1572958783
+# 1572992937
+# 1573059979
+# 1573143507
+# 1573220769
+# 1573252034
+# 1573303349
+# 1573336249
+# 1573387252
+# 1573430726
+# 1573475619
+# 1573564102
+# 1573658131
+# 1573704456
+# 1573753678
+# 1573786112
+# 1573821754
+# 1573850740
+# 1573909199
+# 1573946171
+# 1573997555
+# 1574040109
+# 1574085691
+# 1574134791
+# 1574168034
+# 1574221096
+# 1574261762
+# 1574299848
+# 1574346262
+# 1574376239
+# 1574445927
+# 1574518604
+# 1574548836
+# 1574605416
+# 1574635580
+# 1574687326
+# 1574721481
+# 1574781023
+# 1574810859
+# 1574854500
+# 1574884762
+# 1574951271
+# 1575005063
+# 1575041301
+# 1575126202
+# 1575204837
+# 1575249366
+# 1575289564
+# 1575324128
+# 1575378109
+# 1575412185
+# 1575460284
+# 1575508033
+# 1575551261
+# 1575643220
+# 1575771216
+# 1575899707
+# 1575900541
+# 1575985885
+# 1575986194
+# 1576016950
+# 1576017311
+# 1576068177
+# 1576068226
+# 1576110877
+# 1576113387
+# 1576195379
+# 1576197127
+# 1576247636
+# 1576247930

@@ -1,0 +1,47 @@
+#!/bin/sh
+
+logFile="$HOME/+NOTES/data/body/moodlogger.csv"
+action="$1"
+
+recency()
+{
+	lastTime=$(tail -n 1 "$logFile" | cut -d "," -f 1)
+	lastEpoch=$(date "+%s" -d "$lastTime")
+
+	nowTime=$(date +"%Y-%m-%d %H:%M:%S")
+	nowEpoch=$(date "+%s" -d "$nowTime")
+
+	difference=$(( $nowEpoch - $lastEpoch ))
+
+	echo "$difference"
+}
+
+check()
+{
+	tolerance=7200 # (sec.)
+	if [ $(recency) -ge $tolerance ]; then
+		## https://bbs.archlinux.org/viewtopic.php?id=223050
+		## To notify-send with crontab, the following is the only way I found that works without su/sudo on archlinux.
+		DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus setpriv --euid=1000 \
+		notify-send -t $tolerance \
+		"$(date +"%H:%M") Moodlogger:" \
+		"It has been more than $tolerance seconds since the last update of your mood. Run \`moodlogger\` to insert mood status."
+	fi
+}
+
+log()
+{
+	result=$(echo -e "😁 Hype\n😊 Great\n😐 Meh\n😞 Down\n😭 Sad\n😡 Angry" | dmenu)
+	nowTime=$(date +"%Y-%m-%d %H:%M:%S")
+	nowEpoch=$(date "+%s" -d "$nowTime")
+	comments=$(echo "[Any comments?]" | dmenu)
+
+	echo "$nowTime,$result,\"$comments\"" >> "$logFile"
+}
+
+case "$action" in
+	check) check ;;
+	*) log ;;
+esac
+
+exit

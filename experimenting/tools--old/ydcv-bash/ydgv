@@ -1,0 +1,74 @@
+#!/bin/bash
+#yd bash version for goldendict
+#depends on jq
+
+keyfrom=youdaobashversion
+key=1655512721
+gd() {
+    tmp=$(curl -s --data-urlencode "q=$word" "http://fanyi.youdao.com/openapi.do?keyfrom=${keyfrom}&key=${key}&type=data&doctype=json&version=1.1&")
+    us=$(jq '.basic."us-phonetic"' <<< $tmp)
+    uk=$(jq '.basic."uk-phonetic"' <<< $tmp)
+    tr=$(jq '.translation' <<< $tmp | jq '.[0]' | tr '"' ' ')
+    ex=$(jq '.basic.explains' <<< $tmp | grep '"' | tr '"' ' ' | tr "," ' ')
+    w1key=$(jq '.web' <<< $tmp | jq '.[0].key' | tr '"' ' ')
+    w2key=$(jq '.web' <<< $tmp | jq '.[1].key' | tr '"' ' ')    
+    w3key=$(jq '.web' <<< $tmp | jq '.[2].key' | tr '"' ' ')
+    w1val=$(jq '.web' <<< $tmp | jq '.[0].value' | xargs | tr "[" ' '| tr "]" ' ')
+    w2val=$(jq '.web' <<< $tmp | jq '.[1].value' | xargs | tr "[" ' '| tr "]" ' ')
+    w3val=$(jq '.web' <<< $tmp | jq '.[2].value' | xargs | tr "[" ' '| tr "]" ' ')    
+    
+    if [[ $tr != "null" ]]
+    then
+	
+	echo -e "  Translation:"
+	echo "   $tr"
+	echo 
+    else
+	echo "  No query results"
+    fi
+    
+    wcount=$(wc -w <<< $word)
+    if [[ $wcount -eq 1 && $uk != "null" && $us != "null" ]]
+       then
+	   echo -n "  US:" 
+	   echo -n "$us"
+	   echo -n "  UK:"
+	   echo -n "$uk"
+	   echo 
+	   echo 
+    fi
+    
+    if [ -n "$ex" ]
+    then
+	echo  "  Word Explanation:"
+	echo "$ex"
+	echo 
+    fi
+   
+    if [[ $w1key != "null" || $w2key != "null" || $w3key != "null" ]]
+    then
+	echo  "  Web Reference:"
+    fi
+
+    if [[ $w1key != "null" ]]
+    then	
+	echo  "  $w1key"
+	echo  "  $w1val"
+    fi
+
+    if [[ $w2key != "null" ]]
+    then	
+	echo  "  $w2key"
+	echo  "  $w2val"
+    fi
+
+    if [[ $w3key != "null" ]]
+    then	
+	echo  "  $w3key"
+	echo  "  $w3val"
+    fi
+
+}
+
+read -p "> " word
+gd

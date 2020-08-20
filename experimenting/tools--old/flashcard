@@ -1,0 +1,66 @@
+#!/bin/bash
+# This script quickly adds pre-flashcard for anki to a .tsv file.
+
+maindir="$HOME/.nb/flashcard"
+mainfile_fact="$maindir/fact_flashcards.tsv"
+mainfile_vocab="$maindir/vocab_flashcards.tsv"
+
+case "$1" in
+	-m|--make)	# TODO make anki flashcards directly after understanding anki api.
+			echo "this option is not completed yet." ; exit 1 ;;
+	-l|--list)	read -p "  (f)act or (v)ocab: " Option
+			case "$Option" in
+				f)	cat $mainfile_fact ;;
+				v)	cat $mainfile_vocab ;;
+			esac
+			;;
+	-e|--edit)	read -p "  (f)act or (v)ocab: " Option
+			case "$Option" in
+				f)	"$EDITOR" $mainfile_fact ;;
+				v)	"$EDITOR" $mainfile_vocab ;;
+			esac
+			;;
+	-af|--add_fact)
+			if_add=true
+			read -p "  source: " Source
+			while $if_add; do
+				echo -e "Adding a fact flashcard with source: $Source"
+				read -p "  location: " Location
+				read -p "  front: " Front
+				read -p "  back: " Back
+				read -p "  tag: " Tag
+				Timestamp=$(date -Is)
+				echo -e "$Timestamp\t$Source\t$Location\t$Front\t$Back\t$Tag" >> $mainfile_fact
+
+				echo ""
+				read -p "Add the next card (Y/n)? : " if_continue
+				case $if_continue in
+					n|N) if_add=false ;;
+					*) ;;
+				esac
+			done ;;
+	-av|--add_vocab)
+			if_add=true
+			read -p "  source: " Source
+			while $if_add; do
+				echo -e "Adding a vocabulary flashcard with source: $Source"
+				read -p "  location: " Location
+				read -p "  word: " Word
+				read -p "  meaning: " Meaning
+				read -p "  usage: " Usage
+				read -p "  remark: " Remark
+				Timestamp=$(date -Is)
+				echo -e "$Timestamp\t$Source\t$Location\t$Word\t$Meaning\t$Usage\t$Remark" >> $mainfile_vocab
+
+				echo ""
+				read -p "Add the next card (Y/n)? : " if_continue
+				case $if_continue in
+					n|N) if_add=false ;;
+					*) ;;
+				esac
+			done ;;
+
+		*)	echo "please use options: -l(--list), -e(--edit), -af(--add_fact), -av(--add_vocab)." ; exit 1 ;;
+esac
+
+exit

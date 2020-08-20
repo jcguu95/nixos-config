@@ -1,0 +1,50 @@
+#!/bin/bash
+
+logFile="$HOME/+NOTES/data/body/weightlogger.csv"
+action="$1"
+
+recency()
+{
+	lastTime=$(tail -n 1 "$logFile" | cut -d "," -f 1)
+	lastEpoch=$(date "+%s" -d "$lastTime")
+
+	nowTime=$(date +"%Y-%m-%d %H:%M:%S")
+	nowEpoch=$(date "+%s" -d "$nowTime")
+
+	difference=$(( $nowEpoch - $lastEpoch ))
+
+	echo "$difference"
+}
+
+check()
+{
+	tolerance=86000 # (sec.)
+	if [ $(recency) -ge $tolerance ]; then
+		## https://bbs.archlinux.org/viewtopic.php?id=223050
+		## To notify-send with crontab, the following is the only way I found that works without su/sudo on archlinux.
+		DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus setpriv --euid=1000 \
+		notify-send -t $tolerance \
+		"$(date +"%H:%M") Weightlogger:" \
+		"It has been more than $tolerance seconds since the last update of your weight. Run \`weightlogger\` to insert weight."
+	fi
+}
+
+log()
+{
+	while ! [[ $result =~ ^[0-9][0-9]\.[0-9]$ ]]; do
+	    result=$(echo "[Log weights. Format "nn.n".]" | dmenu)
+        done
+
+	nowTime=$(date +"%Y-%m-%d %H:%M:%S")
+	nowEpoch=$(date "+%s" -d "$nowTime")
+	comments=$(echo "[Any comments?]" | dmenu)
+
+	echo "$nowTime,$result,\"$comments\"" >> "$logFile"
+}
+
+case "$action" in
+	check) check ;;
+	*) log ;;
+esac
+
+exit

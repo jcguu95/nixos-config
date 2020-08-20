@@ -1,0 +1,13 @@
+#!/bin/sh
+
+vocab_path="$HOME/.nb/dictionary_history/fe.org"
+
+echo "* $1" >> $vocab_path
+echo ":LOGBOOK:" >> $vocab_path
+echo ":TIME: $(date +"[%Y-%m-%d %a %H:%M:%S]")" >> $vocab_path
+echo ":END:" >> $vocab_path
+
+notify-send -t 0 "$(trans fr:en "$1" | sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g" | tee -a $vocab_path)"
+echo "================================" >> $vocab_path
+
+exit
