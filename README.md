@@ -11,10 +11,12 @@
 + Compile lukesmith's build of `st` with nix derivation.
 + Setup development environment `haskell`.
 + Reproducibly configure `emacs`.
++ Understand source of `xmonad` and [apply
+  transparency](https://stackoverflow.com/questions/43998105/making-every-window-transparent-with-xmonad/43998106#43998106).
 
 # Acknowledgement
 
-Much code was stolen from
+Some code was stolen from
 
 + [Luke Smith](https://github.com/LukeSmithxyz/)
 + [jumper149](https://github.com/jumper149/)
