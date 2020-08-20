@@ -176,7 +176,6 @@ in {
     };
     desktopManager.xterm.enable = false;
     displayManager.startx.enable = true;
-    # displayManager.sessionCommands = ''feh --bg-fill ~/wall.png''; ## TODO doesn't work figure out why!
     # capslock => control 
     xkbOptions = "ctrl:nocaps"; # now capslock means control :)
   };
@@ -185,7 +184,7 @@ in {
     programs.home-manager.enable = true;
 
     home.file = {
-      "./wall.png".source = "${dot}/.wall.png";
+      "./.wall.png".source = "${dot}/.wall.png";
       ".xinitrc".text = builtins.readFile "${dot}/.xinitrc";
       ".config/alacritty.yml".text = builtins.readFile "${dot}/alacritty.yml";
 
