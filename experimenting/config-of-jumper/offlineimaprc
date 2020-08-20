@@ -1,0 +1,51 @@
+[general]
+# List of accounts to be synced, separated by a comma.
+accounts = gmail,stud-uni-hannover
+# for access to gmail
+pythonfile = ~/.offlineimap/offlineimap_pass.py
+# SSL/TLS
+starttls = yes
+ssl = yes
+
+#####
+
+[Account gmail]
+# Identifier for the local repository; e.g. the maildir to be synced via IMAP.
+localrepository = gmail-local
+# Identifier for the remote repository; i.e. the actual IMAP, usually non-local.
+remoterepository = gmail-remote
+
+[Repository gmail-local]
+# OfflineIMAP supports Maildir, GmailMaildir, and IMAP for local repositories.
+type = Maildir
+# Where should the mail be placed?
+localfolders = ~/.mail/gmail
+
+[Repository gmail-remote]
+# Remote repos can be IMAP or Gmail, the latter being a preconfigured IMAP.
+type = Gmail
+remoteuser = felixspringer149@gmail.com
+# Password for gmail account usage of apps is in the application pass
+remotepasseval = get_pass("gmail")
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+# temporary fix for offlinimap/gmail compatibility
+ssl_version = tls1_2
+
+#####
+
+[Account stud-uni-hannover]
+localrepository = stud-uni-hannover-local
+remoterepository = stud-uni-hannover-remote
+
+[Repository stud-uni-hannover-local]
+type = Maildir
+localfolders = ~/.mail/stud-uni-hannover
+
+[Repository stud-uni-hannover-remote]
+type = IMAP
+remotehost = mail.uni-hannover.de
+remoteport = 993
+remoteuser = felix.springer@stud.uni-hannover.de
+remotepasseval = get_pass("stud-uni-hannover")
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt

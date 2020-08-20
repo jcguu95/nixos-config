@@ -1,0 +1,37 @@
+# Enable sidebar in muttrc.
+#set sidebar_visible=yes
+
+# Enable extended buffy mode to calculate total, new, and flagged
+# message counts for each mailbox.
+set mail_check_stats
+
+set sidebar_width = 20
+set sidebar_short_path = yes
+set sidebar_delim_chars = '/.'
+set sidebar_folder_indent = no
+set sidebar_indent_string = '  '
+set sidebar_new_mail_only = no
+set sidebar_next_new_wrap = yes
+set sidebar_divider_char = '│'
+set sidebar_format = '%B%?F? [%F]?%* %?N?%N/?%S'
+
+# Any mailboxes that are whitelisted will always be visible, even if the
+# sidebar_new_mail_only option is enabled.
+#sidebar_whitelist '/home/user/mailbox1'
+#sidebar_whitelist '/home/user/mailbox2'
+
+
+# Sort the mailboxes in the Sidebar using this method:
+#       count    - total number of messages
+#       flagged  - number of flagged messages
+#       new      - number of new messages
+#       path     - mailbox path
+#       unsorted - do not sort the mailboxes
+set sidebar_sort_method = 'unsorted'
+
+bind index,pager \ck sidebar-prev
+bind index,pager \cj sidebar-next
+bind index,pager \cl sidebar-open
+bind index,pager \ch sidebar-toggle-visible
+
+# vim: syntax=muttrc

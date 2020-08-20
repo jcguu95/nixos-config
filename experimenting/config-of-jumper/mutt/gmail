@@ -1,0 +1,29 @@
+set imap_user 		= "felixspringer149@gmail.com"
+
+set from 		= "felixspringer149@gmail.com"
+
+set edit_headers 	= yes
+set mbox_type 		= Maildir
+
+set use_from 		= yes
+set envelope_from 	= yes
+set sendmail 		= "msmtp -a gmail"
+
+set folder = "~/.mail/gmail"
+
+set spoolfile = "+INBOX"
+
+set mbox = "+[Gmail].All Mail"
+set record = "/dev/null"
+set postponed = "+[Gmail].Drafts"
+
+mailboxes "+ " "+------gmail-------" "+INBOX" "+[Gmail].Sent Mail" "+[Gmail].Spam" "+[Gmail].Drafts" "+[Gmail].Trash"
+
+# hook important
+account-hook $folder "set imap_user=felixspringer149@gmail.com"
+
+set signature = "~/.mutt/signature"
+
+subscribe arch-announce@archlinux.org
+
+# vim: syntax=muttrc
