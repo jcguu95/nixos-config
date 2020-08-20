@@ -3,9 +3,9 @@
 ## xmonad
 echo "\n### Configuring xmonad.. ###"
 echo "Backing up xmonad config if any.."
-mv $HOME/.xmonad $HOME/.xmonad_bak
+mv $HOME/.xmonad $HOME/.xmonad_bak_$(date -Is)
 echo "Symlinking our xmonad config to $HOME/.xmonad.."
-ln -sf $(pwd)/.dotfiles/.xmonad $HOME/.xmonad
+ln -sf $(pwd)/dotfiles/.xmonad $HOME/.xmonad
 echo "Recompiling xmonad.."
 xmonad --recompile
 echo "Done."
@@ -13,7 +13,7 @@ echo "Done."
 ## xmobar
 echo "\n### Configuring xmobar.. ###"
 echo "Symlinking our xmobar config to $HOME/.config/xmobar.."
-ln -sf $(pwd)/.dotfiles/.config/xmobar $HOME/.config/xmobar
+ln -sf $(pwd)/dotfiles/.config/xmobar $HOME/.config/xmobar
 echo "  Done."
 
 ## TODO Luke Smith's st
