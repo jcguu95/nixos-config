@@ -66,10 +66,10 @@ in {
 
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
-    wpa_supplicant_gui gcc binutils nix feh
+    wpa_supplicant_gui gcc binutils nix feh i3lock
     wget vim neovim sudo manpages gitAndTools.gitFull
-    trayer dmenu picom nitrogen
-    haskellPackages.xmobar
+    trayer dmenu rofi scrot picom nitrogen
+    haskellPackages.xobar
     qutebrowser alacritty htop ranger unzip
 
     irssi xcape zathura ghostscript 

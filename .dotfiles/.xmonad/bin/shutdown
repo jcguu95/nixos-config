@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+OPTION="$(decide 'shutdown' 'reboot' 'leave Xmonad')"
+
+case "$OPTION" in
+	"shutdown")
+		shutdown now
+		;;
+	"reboot")
+		reboot
+		;;
+	"leave Xmonad")
+		pkill xmonad
+		;;
+	*)
+		exit 1
+esac

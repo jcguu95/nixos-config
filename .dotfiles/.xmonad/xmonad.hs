@@ -1,75 +1,47 @@
-import XMonad
-import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.SpawnOnce
-import XMonad.Util.EZConfig (additionalKeysP)
-import XMonad.Actions.CopyWindow (kill1)
+import XMonad hiding ( Color -- imports modules: Main, Core, Config, Layout, ManageHook, Operations
+                     )
+import XMonad.Hooks.ManageDocks ( docks
+                                )
+import XMonad.Hooks.EwmhDesktops ( ewmh
+                                 )
 
--- For xmobar
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.DynamicLog
-import XMonad.Util.EZConfig(additionalKeys)
-import System.IO
--- --- ------
+import XMonad.Local.Bindings.Bind ( mapBindings
+                                  , storeBindings
+                                  )
+import XMonad.Local.Bindings.Keys ( myKeys
+                                  )
+import qualified XMonad.Local.Config.Theme as T
+import XMonad.Local.Config.Workspace ( workspaceIds
+                                     )
+import XMonad.Local.Layout.Hook ( myLayoutHook
+                                )
+import XMonad.Local.Log.Hook ( myLogHook
+                             )
+import XMonad.Local.Log.XMobar ( spawnXMobar
+                               )
+import XMonad.Local.Manage.Hook ( myManageHook
+                                )
+import XMonad.Local.Startup.Hook ( myStartupHook
+                                 )
+import XMonad.Local.Urgency.Hook ( applyUrgencyHook
+                                 )
 
-myModMask :: KeyMask
-myModMask = mod4Mask
-
-xmobarEscape :: String -> String
-xmobarEscape = concatMap doubleLts
-  where
-        doubleLts '<' = "<<"
-        doubleLts x   = [x]
-
-myWorkspaces :: [String]
-myWorkspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-
-myTerminal :: String
-myTerminal = "alacritty"
-
-myBrowser :: String
-myBrowser = "qutebrowser"
-
-myFileManager :: String
-myFileManager = "\"alacritty -e ranger\""
-
-myEditor :: String
-myEditor = "nvim"
-
-myBorderWidth :: Dimension
-myBorderWidth = 1
-
-myNormColor :: String
-myNormColor = "#292d3e"
-
-myFocusColor :: String
-myFocusColor = "#bbc5ff"
-
-myKeys :: [(String, X ())]
-myKeys =
-        [ ("M-q", kill1) -- Kill the currently focused client
-        , ("M-<Return>", spawn myTerminal)
-        , ("M-w", spawn myBrowser) 
-        , ("M-r", spawn myFileManager) -- TODO: It does not work.
-        ]
-
-myStartupHook :: X ()
-myStartupHook = do
-          -- spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x000000 --height 16 &"
-          spawnOnce "/usr/bin/emacs --daemon &"
-
-main = do
-    xmproc <- spawnPipe "xmobar"
-    xmonad $ docks defaultConfig
-        { layoutHook = avoidStruts $ layoutHook defaultConfig
-        , logHook = dynamicLogWithPP xmobarPP
-                        { ppOutput = hPutStrLn xmproc
-                        , ppTitle = xmobarColor "green" "" . shorten 50
-                        }
-        , startupHook        = myStartupHook
-        , modMask            = myModMask
-        , terminal           = myTerminal
-        , workspaces         = myWorkspaces
-        , borderWidth        = myBorderWidth
-        , normalBorderColor  = myNormColor
-        , focusedBorderColor = myFocusColor
-        } `additionalKeysP` myKeys
+main :: IO ()
+main = do xmproc <- spawnXMobar
+          let (applicableKeys , explainableBindings) = mapBindings $ myKeys . modMask
+              c = def { borderWidth        = T.borderWidth T.myTheme
+                      , normalBorderColor  = T.inactiveBorderColor T.myTheme
+                      , focusedBorderColor = T.activeBorderColor T.myTheme
+                      , terminal           = "alacritty"
+                      , focusFollowsMouse  = False
+                      , clickJustFocuses   = False
+                      , modMask            = mod4Mask
+                      , keys               = applicableKeys
+                      , workspaces         = workspaceIds
+                      , layoutHook         = myLayoutHook
+                      , manageHook         = myManageHook
+                      , startupHook        = myStartupHook
+                      , logHook            = myLogHook xmproc
+                      }
+              fc = storeBindings explainableBindings . docks . applyUrgencyHook . ewmh $ c
+          xmonad fc
