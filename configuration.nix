@@ -13,7 +13,7 @@ let
     rev = "dd94a849df69fe62fe2cb23a74c2b9330f1189ed"; # CHANGEME 
     ref = "release-18.09";
   }; 
-  dot = "/home/jin/nixos-config/dotfiles"; ### should be changed manually while running the first time after fresh installing nixos
+  dot = "/home/jin/nixos-config/tilde"; ### should be changed manually while running the first time after fresh installing nixos
 in {
   imports =
     [ # Include the results of the hardware scan.
