@@ -8,7 +8,8 @@
 
 ### Harder
 
-1. Compile lukesmith's build of `st` with nix derivation.
-2. Reproducibly setup wallpaper.
-3. Setup development environment `haskell`.
-4. Reproducibly configure `emacs`.
++ Compile lukesmith's build of `st` with nix derivation.
++ Reproducibly setup wallpaper.
++ Reproducibly install `trash-cli`.
++ Setup development environment `haskell`.
++ Reproducibly configure `emacs`.
