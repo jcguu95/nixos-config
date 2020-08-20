@@ -13,7 +13,7 @@ let
     rev = "dd94a849df69fe62fe2cb23a74c2b9330f1189ed"; # CHANGEME 
     ref = "release-18.09";
   }; 
-  dot = "/home/jin/nixos-config/tilde"; ### should be changed manually while running the first time after fresh installing nixos
+  tilde = "/home/jin/nixos-config/tilde"; ### should be changed manually while running the first time after fresh installing nixos
 in {
   imports =
     [ # Include the results of the hardware scan.
@@ -64,6 +64,7 @@ in {
       HISTFILESIZE=50000
       HISTSIZE=50000
       SAVEHIST=50000
+      export PATH="$HOME/.scripts:$PATH:"
     '';
   };
 
@@ -184,34 +185,35 @@ in {
     programs.home-manager.enable = true;
 
     home.file = {
-      "./.wall.png".source = "${dot}/.wall.png";
-      ".xinitrc".text = builtins.readFile "${dot}/.xinitrc";
-      ".config/alacritty.yml".text = builtins.readFile "${dot}/alacritty.yml";
+      "./.wall.png".source = "${tilde}/.wall.png";
+      "./.scripts".source = "${tilde}/.scripts";
+      ".xinitrc".text = builtins.readFile "${tilde}/.xinitrc";
+      ".config/alacritty.yml".text = builtins.readFile "${tilde}/alacritty.yml";
 
       ".config/qutebrowser/config.py".text =
-        builtins.readFile "${dot}/.config/qutebrowser/config.py";
+        builtins.readFile "${tilde}/.config/qutebrowser/config.py";
       ".config/qutebrowser/void.html".text =
-        builtins.readFile "${dot}/.config/qutebrowser/void.html";
+        builtins.readFile "${tilde}/.config/qutebrowser/void.html";
       ".config/qutebrowser/quickmarks".text =
-        builtins.readFile "${dot}/.config/qutebrowser/quickmarks";
+        builtins.readFile "${tilde}/.config/qutebrowser/quickmarks";
 
       # below we configure ranger..
       ".config/ranger/commands.py".text =
-        builtins.readFile "${dot}/.config/ranger/commands.py";
+        builtins.readFile "${tilde}/.config/ranger/commands.py";
       ".config/ranger/rc.conf".text =
-        builtins.readFile "${dot}/.config/ranger/rc.conf";
+        builtins.readFile "${tilde}/.config/ranger/rc.conf";
       ".config/ranger/scope.sh" = {
-          text = builtins.readFile "${dot}/.config/ranger/scope.sh";
+          text = builtins.readFile "${tilde}/.config/ranger/scope.sh";
 	  executable = true;
       };
       ".config/ranger/shortcuts_jin.conf".text =
-        builtins.readFile "${dot}/.config/ranger/shortcuts_jin.conf";
+        builtins.readFile "${tilde}/.config/ranger/shortcuts_jin.conf";
       ".config/ranger/luke_ranger_readme.md".text =
-        builtins.readFile "${dot}/.config/ranger/luke_ranger_readme.md";
+        builtins.readFile "${tilde}/.config/ranger/luke_ranger_readme.md";
       ".config/ranger/rifle.conf".text =
-        builtins.readFile "${dot}/.config/ranger/rifle.conf";
+        builtins.readFile "${tilde}/.config/ranger/rifle.conf";
       ".config/ranger/shortcuts.conf".text =
-        builtins.readFile "${dot}/.config/ranger/shortcuts.conf";
+        builtins.readFile "${tilde}/.config/ranger/shortcuts.conf";
     };
 
     programs.git = {
