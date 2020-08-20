@@ -70,3 +70,38 @@ c.qt.force_software_rendering = 'software-opengl'
 # org-roam protocol without javascript
 config.bind("<Ctrl-r>", "spawn python "+os.environ["HOME"]+"/.scripts/qutebrowser-userscripts/org-protocol-handler.py \"{url:pretty}\" \"{title}\"")
 
+# colors
+c.fonts.default_size = '15pt'
+
+myColor0      = '#282828'; myColor8      = '#928374'; # black
+myColor1      = '#cc241d'; myColor9      = '#fb4934'; # red
+myColor2      = '#98971a'; myColorA      = '#b8bb26'; # green
+myColor3      = '#d79921'; myColorB      = '#fabd2f'; # yellow
+myColor4      = '#458588'; myColorC      = '#83a598'; # blue
+myColor5      = '#b16286'; myColorD      = '#d3869b'; # magenta
+myColor6      = '#689d6a'; myColorE      = '#83c07c'; # cyan
+myColor7      = '#ffffff'; myColorF      = '#ffffff'; # white
+
+def myTransparent(color, alpha):
+    color = color.lstrip('#')
+    r = int(color[0:2], 16)
+    g = int(color[2:4], 16)
+    b = int(color[4:6], 16)
+    return 'rgba({r}, {g}, {b}, {alpha})'.format(r=r, g=g, b=b, alpha=alpha)
+
+c.colors.hints.bg = myTransparent(myColorB, 0.8)
+c.colors.hints.fg = myColor0
+c.colors.hints.match.fg = myColor9
+c.colors.keyhint.bg = myTransparent(myColorC, 0.9)
+c.colors.keyhint.fg = myColor0
+c.colors.keyhint.suffix.fg = myColor1
+
+c.colors.messages.error.bg = myTransparent(myColor9, 0.8)
+c.colors.messages.error.border = myTransparent(myColor1, 0.9)
+c.colors.messages.error.fg = myColor0
+c.colors.messages.info.bg = myTransparent(myColorC, 0.8)
+c.colors.messages.info.border = myTransparent(myColor4, 0.9)
+c.colors.messages.info.fg = myColor0
+c.colors.messages.warning.bg = myTransparent(myColorB, 0.8)
+c.colors.messages.warning.border = myTransparent(myColor3, 0.9)
+c.colors.messages.warning.fg = myColor0
