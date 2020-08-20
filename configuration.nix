@@ -96,11 +96,11 @@ in {
     enableDefaultFonts = true;
     fonts = with pkgs; [
       terminus_font ## This is the font I like, use `fc-list | grep Terminus` to see its name <3
-      unifont 
+      unifont
       wqy_microhei wqy_zenhei
       hack-font noto-fonts noto-fonts-cjk noto-fonts-emoji 
       liberation_ttf fira-code fira-code-symbols mplus-outline-fonts
-      dina-font proggyfonts source-code-pro inconsolata xorg.fontalias
+      dina-font proggyfonts source-code-pro inconsolata
       # unfree: symbola
     ];
 

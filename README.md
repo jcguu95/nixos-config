@@ -2,7 +2,6 @@
 
 ## TODOs
 
-+ A font is missing.. (zathura).
 + Setup `dmenu` and recording tools. 
 + Setup `nvim`.
 + Setup `ssh` and a listening server.
