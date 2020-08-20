@@ -1,0 +1,7 @@
+#!/bin/sh
+## Author: Jin
+
+yd $(xclip -o) | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" | tee "/tmp/dict.txt"
+notify-send -u low -t 0 "$(cat /tmp/dict.txt)"
+
+exit

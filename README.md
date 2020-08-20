@@ -13,3 +13,12 @@
 + Reproducibly install `trash-cli`.
 + Setup development environment `haskell`.
 + Reproducibly configure `emacs`.
+
+# Acknowledgement
+
+Much code was stolen from
+
++ [Luke Smith](https://github.com/LukeSmithxyz/)
++ [jumper149](https://github.com/jumper149/)
+
+Thank you!

@@ -1,0 +1,33 @@
+#!/bin/bash
+
+## This is a bash script that will be run by qutebrowser at its launch!
+## It tracks the time spent and the URL (in second) on the focused tab.
+## Also, it only tracks while qutebrowser is focused. (while grep -q "^-active: true" "$Session" is true)
+
+SessionTime=$(date "+%F-%T-[%z]")
+SavingDirectory="$HOME/Cloud/Dropbox/workspace/program/qutebrowser-userscripts"
+Log="$SavingDirectory/usage-log-$SessionTime.txt"
+Session="$SavingDirectory/session.tmp.yaml"
+
+while true; do
+	echo "session-save $Session" >> "$QUTE_FIFO"
+
+	Url="$(
+	cat "$Session" |
+	sed -n '/^  - active:/,/^  - history:/ p' |
+	sed -n '/^[ \t]*y:/,/^[ \t]*url/ p' |
+	sed '/^[ \t]*url/! d' |
+	sed 's/^[ \t]*url: //')"
+
+	grep -q "^- active: true" "$Session" && ## so the following if loop only works while qutebrowser is active
+	if grep -q "$Url" "$Log"; then
+		# It's not going to work if I use s/.. # Note that we must escape here: not even `sed -n "/"$Url"/.." works!`
+		EscapedUrl=$(echo "$Url" | sed "s_\/_\\\/_g")
+		OldAccumuTime=$(cat "$Log" | sed -n "/$EscapedUrl/ s/ .*//p")
+		NewAccumuTime=$(($OldAccumuTime+1))
+		sed -i "s/^$OldAccumuTime $EscapedUrl/$NewAccumuTime $EscapedUrl/" "$Log"
+	else	echo -e "1 $Url" >> "$Log"
+	fi
+
+	sleep 1
+done

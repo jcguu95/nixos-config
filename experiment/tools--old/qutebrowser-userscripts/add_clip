@@ -1,0 +1,12 @@
+#!/bin/bash
+
+maindir="$HOME/.scripts/qutebrowser-userscripts"
+mainfile="$maindir/clip.tsv"
+
+cd $maindir
+touch $mainfile
+clip=$(echo "$QUTE_SELECTED_TEXT" | tr '\n' ' ')
+Source="$QUTE_TITLE"
+url="$QUTE_URL"
+echo message-info \""${added $clip to $mainfile}"\" >> "$QUTE_FIFO"
+echo -e "$clip\t$Source\t$url\t$(date -Is)" >> "$mainfile"

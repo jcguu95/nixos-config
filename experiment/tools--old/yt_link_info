@@ -1,0 +1,29 @@
+#!/usr/bin/python
+# Author: Jin
+
+##### Example #####
+# $./<this_script> "https://www.youtube.com/watch?v=I6biQ_2RK3k"
+# ... ==> https://www.youtube.com/watch?v=I6biQ_2RK3k ___ 2020-05-01 07:41:53.218915 ___ How to vote during a pandemic ___ Vox
+##### Example #####
+
+import io, sys, youtube_dl
+from datetime import datetime
+time    = str(datetime.now())
+ydl     = youtube_dl.YoutubeDL({'outtmpl': '%(id)s%(ext)s', 'quiet': True,})
+url     = sys.argv[1]
+
+if len(sys.argv) > 2:
+    comment = sys.argv[2]
+
+
+result = ydl.extract_info(
+    url ,
+    download=False # We just want to extract the info
+)
+
+
+title    = result['title']
+uploader = result['uploader']
+
+d = " ___ "
+print("%s%s%s%s%s%s%s" % (time, d, url, d, title, d, uploader))

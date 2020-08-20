@@ -1,0 +1,49 @@
+# personal info
+set realname="Felix Springer"
+
+# general
+set editor="vim"
+set send_charset="utf-8"
+set sort_aux="reverse-date"
+unset markers # remove "+" at the beginning of wrapped lines in pager
+set wait_key="no"
+set print_command="mail-to-pdf"
+set print="ask-yes"
+set pager_stop="yes"
+
+# bindings
+source "~/.mutt/bindings"
+
+# colors
+source "~/.mutt/colors"
+
+# sidebar
+set sidebar_visible="yes"
+source "~/.mutt/sidebar"
+
+# threads (enable by sourcing file)
+source "~/.mutt/threads"
+
+# mailcap
+set mailcap_path= ~/.mutt/mailcap
+auto_view text/html
+
+# signing and encrypting
+source "~/.mutt/gpg.rc"
+source "~/.mutt/sec"
+
+# abook
+set query_command="abook --mutt-query '%s'"
+macro index,pager a "<pipe-message>abook --add-email-quiet<return>" "Add this sender to Abook"
+bind editor <tab> complete-query
+
+# urlscan
+macro pager U "<pipe-message>urlscan<enter>" "Extract URLs with urlscan"
+
+# addresses
+source "~/.mutt/stud-uni-hannover"
+folder-hook $folder 'source ~/.mutt/stud-uni-hannover'
+
+# at the end of config to focus on startup
+source "~/.mutt/gmail"
+folder-hook $folder 'source ~/.mutt/gmail'

@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# This script is called on startup to remap keys.
+# Increase key speed via a rate change
+xset r rate 300 50
+
+# Map the menu button to right super.
+xmodmap -e 'keycode 135 = Super_R'
+
+# Map the caps lock key to super... taken from
+## https://www.emacswiki.org/emacs/MovingTheCtrlKey
+## more resources: https://wiki.archlinux.org/index.php/Keyboard_input
+setxkbmap -option ctrl:nocaps       # Make Caps Lock a Control key
+# But when it is pressed only once, treat it as escape.
+killall xcape 2>/dev/null ; xcape -e 'Control_L=Escape'
+

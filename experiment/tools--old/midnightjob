@@ -1,0 +1,37 @@
+#!/bin/bash
+
+CURRENT_TIME=$(date +"%Y-%m-%dT%H%M%S");
+LISTDIR=$HOME/.nb/list
+case "$1" in
+	"--no-date")
+		DESTDIR=$HOME/+INBOX/$CURRENT_TIME
+		;;
+	*)	DESTDIR=$HOME/+INBOX/midnight_download
+		;;
+esac
+mkdir "$DESTDIR"; cd "$DESTDIR"
+ln -sf $LISTDIR .
+
+TBYtaList="$LISTDIR/to-be-yta.list"
+TBYtvList="$LISTDIR/to-be-ytv.list"
+
+exec 3>&1 4>&2
+trap 'exec 2>&4 1>&3' 0 1 2 3
+exec 1>>"$DESTDIR/.logout" 2>&1
+# Everything below will go to the file 'logout':
+
+# Download youtube audios
+readarray -t YtaList < "$TBYtaList"
+for row in "${YtaList[@]}"; do
+	url=$(echo $row | awk -F" ___ " '{print $2}')
+	youtube-dl --output "%(title)s---%(id)s.%(ext)s" --extract-audio --audio-format mp3 --audio-quality 0 --add-metadata --embed-thumbnail --no-playlist "$url"
+done
+
+# Download youtube videos
+readarray -t YtvList < "$TBYtvList"
+for row in "${YtvList[@]}"; do
+	url=$(echo $row | awk -F' ___ ' '{print $2}')
+	youtube-dl -f 'bestvideo[height<=720]+bestaudio/best[height<=720]' --output "%(title)s---%(id)s.%(ext)s" --add-metadata --no-playlist -i "$url"
+done
+
+exit

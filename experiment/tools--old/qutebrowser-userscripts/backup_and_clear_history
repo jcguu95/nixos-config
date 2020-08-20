@@ -1,0 +1,16 @@
+#!/bin/sh
+
+###### 1. Backup
+
+## The following way is deprecated as it does not contain history on live.
+# histDir="$HOME/.local/share/qutebrowser/history.sqlite"
+# sqlite3 "$histDir" .dump
+## Instead, we dump history by:
+qutebrowser ":download qute://history/data -d $HOME/.nb/qb_history/$(date -Is).json"
+## Notice that this way you may only fetch history for the past 24 hours.
+## See more at https://www.reddit.com/r/qutebrowser/comments/hs7laz/export_history_in_plaintext/
+
+###### 2. Clear
+qutebrowser ":history-clear"
+
+exit

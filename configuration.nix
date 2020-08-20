@@ -71,7 +71,7 @@ in {
   environment.systemPackages = with pkgs; [
     wpa_supplicant_gui gcc binutils nix feh i3lock
     wget vim neovim sudo manpages gitAndTools.gitFull
-    trayer dmenu scrot picom nitrogen
+    trayer dmenu scrot atool
     haskellPackages.xmobar
     qutebrowser alacritty htop ranger unzip
 
@@ -185,6 +185,7 @@ in {
     programs.home-manager.enable = true;
 
     home.file = {
+      "./wall.png".source = "${dot}/.wall.png";
       ".xinitrc".text = builtins.readFile "${dot}/.xinitrc";
       ".config/alacritty.yml".text = builtins.readFile "${dot}/alacritty.yml";
 
