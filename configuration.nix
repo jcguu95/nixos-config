@@ -73,7 +73,7 @@ in {
     wget vim neovim sudo manpages gitAndTools.gitFull
     trayer dmenu scrot atool
     haskellPackages.xmobar
-    qutebrowser alacritty htop ranger unzip
+    qutebrowser alacritty htop ranger unzip poppler
 
     irssi xcape zathura ghostscript 
     emacs mupdf tree fzf less ledger 
@@ -96,11 +96,12 @@ in {
     enableDefaultFonts = true;
     fonts = with pkgs; [
       terminus_font ## This is the font I like, use `fc-list | grep Terminus` to see its name <3
-      unifont
+      unifont 
       wqy_microhei wqy_zenhei
-      hack-font noto-fonts noto-fonts-cjk noto-fonts-emoji
+      hack-font noto-fonts noto-fonts-cjk noto-fonts-emoji 
       liberation_ttf fira-code fira-code-symbols mplus-outline-fonts
-      dina-font proggyfonts source-code-pro inconsolata
+      dina-font proggyfonts source-code-pro inconsolata xorg.fontalias
+      # unfree: symbola
     ];
 
     fontconfig.penultimate.enable = false;
