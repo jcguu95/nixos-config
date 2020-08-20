@@ -54,19 +54,18 @@ in {
   time.timeZone = "America/Chicago";
 
   users.defaultUserShell = pkgs.zsh;
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
-    interactiveShellInit=''
-      [ -z "$HISTFILE" ] && HISTFILE="$HOME/.config/zsh/.zsh_hist"
-      HISTFILESIZE=50000
-      HISTSIZE=50000
-      SAVEHIST=50000
-      export PATH="$HOME/.scripts:$PATH:"
-    '';
-  };
+  #programs.zsh = {
+  #  enable = true;
+  #  enableCompletion = true;
+  #  autosuggestions.enable = true;
+  #  syntaxHighlighting.enable = true;
+  #  interactiveShellInit=''
+  #    [ -z "$HISTFILE" ] && HISTFILE="$HOME/.config/zsh/.zsh_hist"
+  #    HISTFILESIZE=50000
+  #    HISTSIZE=50000
+  #    SAVEHIST=50000
+  #  '';
+  #};
 
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
@@ -187,44 +186,44 @@ in {
     home.file = {
       "./.wall.png".source = "${tilde}/.wall.png";
       "./.scripts".source = "${tilde}/.scripts";
+      #"./.config".source = "${tilde}/.config"; # .config usually got modified. eg ranger wouldn't work this way
       ".xinitrc".text = builtins.readFile "${tilde}/.xinitrc";
-      ".config/alacritty.yml".text = builtins.readFile "${tilde}/alacritty.yml";
+      #".config/alacritty.yml".text = builtins.readFile "${tilde}/alacritty.yml";
 
-      ".config/qutebrowser/config.py".text =
-        builtins.readFile "${tilde}/.config/qutebrowser/config.py";
-      ".config/qutebrowser/void.html".text =
-        builtins.readFile "${tilde}/.config/qutebrowser/void.html";
-      ".config/qutebrowser/quickmarks".text =
-        builtins.readFile "${tilde}/.config/qutebrowser/quickmarks";
+      #".config/qutebrowser/config.py".text =
+        #builtins.readFile "${tilde}/.config/qutebrowser/config.py";
+      #".config/qutebrowser/void.html".text =
+        #builtins.readFile "${tilde}/.config/qutebrowser/void.html";
+      #".config/qutebrowser/quickmarks".text =
+        #builtins.readFile "${tilde}/.config/qutebrowser/quickmarks";
 
       # below we configure ranger..
-      ".config/ranger/commands.py".text =
-        builtins.readFile "${tilde}/.config/ranger/commands.py";
-      ".config/ranger/rc.conf".text =
-        builtins.readFile "${tilde}/.config/ranger/rc.conf";
-      ".config/ranger/scope.sh" = {
-          text = builtins.readFile "${tilde}/.config/ranger/scope.sh";
-	  executable = true;
-      };
-      ".config/ranger/shortcuts_jin.conf".text =
-        builtins.readFile "${tilde}/.config/ranger/shortcuts_jin.conf";
-      ".config/ranger/luke_ranger_readme.md".text =
-        builtins.readFile "${tilde}/.config/ranger/luke_ranger_readme.md";
-      ".config/ranger/rifle.conf".text =
-        builtins.readFile "${tilde}/.config/ranger/rifle.conf";
-      ".config/ranger/shortcuts.conf".text =
-        builtins.readFile "${tilde}/.config/ranger/shortcuts.conf";
+      #".config/ranger/commands.py".text =
+        #builtins.readFile "${tilde}/.config/ranger/commands.py";
+      #".config/ranger/rc.conf".text =
+        #builtins.readFile "${tilde}/.config/ranger/rc.conf";
+      #".config/ranger/scope.sh" = {
+          #text = builtins.readFile "${tilde}/.config/ranger/scope.sh";
+          #executable = true;
+      #};
+      #".config/ranger/shortcuts_jin.conf".text =
+        #builtins.readFile "${tilde}/.config/ranger/shortcuts_jin.conf";
+      #".config/ranger/luke_ranger_readme.md".text =
+        #builtins.readFile "${tilde}/.config/ranger/luke_ranger_readme.md";
+      #".config/ranger/rifle.conf".text =
+        #builtins.readFile "${tilde}/.config/ranger/rifle.conf";
+      #".config/ranger/shortcuts.conf".text =
+        #builtins.readFile "${tilde}/.config/ranger/shortcuts.conf";
     };
 
-    programs.git = {
-      enable = true; 
-      userName = "jcguu95";
-      userEmail = "jcguu95@gmail.com"; 
-    };
+    #programs.git = {
+    #  enable = true; 
+    #  userName = "jcguu95";
+    #  userEmail = "jcguu95@gmail.com"; 
+    #};
 
     programs.vim = { 
       enable = true;
-      #extraConfig = builtins.readFile /home/jin/.config/vim/vimrc;
       settings = {
         relativenumber = true;
 	number = true;
@@ -238,14 +237,14 @@ in {
       ];
     };
 
-    programs.zsh = {
-      enable = true;
-      enableAutosuggestions = true;
-      enableCompletion = true;
-      dotDir = ".config/zsh";
-      history.extended = true;
-      history.path = ".config/zsh/.zsh_history";
-    };
+    #programs.zsh = {
+    #  enable = true;
+    #  enableAutosuggestions = true;
+    #  enableCompletion = true;
+    #  dotDir = ".config/zsh";
+    #  history.extended = true;
+    #  history.path = ".config/zsh/.zsh_history";
+    #};
   };
 
 console.font = "Lat2-Terminus16";

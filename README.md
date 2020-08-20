@@ -2,9 +2,12 @@
 
 ## TODOs
 
++ A font is missing.. (zathura).
 + Setup `dmenu` and recording tools. 
 + Setup `nvim`.
 + Setup `ssh` and a listening server.
++ Now good setup for `zsh` is gone cuz of `~/.config` unsafe issue.. fix it
+  manually :(
 
 ### Harder
 
@@ -13,6 +16,8 @@
 + Reproducibly configure `emacs`.
 + Understand source of `xmonad` and [apply
   transparency](https://stackoverflow.com/questions/43998105/making-every-window-transparent-with-xmonad/43998106#43998106).
++ Rescue `~/.config` from impurity :( .. this seems like a [hard
+  issue](https://github.com/rycee/home-manager/issues/257).
 
 # Acknowledgement
 
