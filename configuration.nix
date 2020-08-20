@@ -32,7 +32,9 @@ in {
   networking.interfaces.enp8s0.useDHCP = true;
   networking.interfaces.wlp9s0.useDHCP = true;
   networking.hostName = "guu-nixos"; # Define your hostname.
-  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;
+  programs.nm-applet.enable = true; # use nmtui to easily config wifi ;)
+
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -64,7 +66,7 @@ in {
 
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
-    gcc binutils nix feh
+    wpa_supplicant_gui gcc binutils nix feh
     wget vim neovim sudo manpages gitAndTools.gitFull
     trayer dmenu picom nitrogen
     haskellPackages.xmobar
@@ -90,9 +92,10 @@ in {
     fonts = with pkgs; [
       terminus_font ## This is the font I like, use `fc-list | grep Terminus` to see its name <3
       unifont
-      wqy_microhei
-      wqy_zenhei
-      noto-fonts-emoji
+      wqy_microhei wqy_zenhei
+      hack-font noto-fonts noto-fonts-cjk noto-fonts-emoji
+      liberation_ttf fira-code fira-code-symbols mplus-outline-fonts
+      dina-font proggyfonts source-code-pro
     ];
 
     fontconfig.penultimate.enable = false;
@@ -103,13 +106,6 @@ in {
       monospace = ["Terminus" "WenQuanYi Zen Hei" "Unifont" "WenQuanYi Micro Hei"];
     };
   };
-  #fonts.fonts = with pkgs; [
-    #terminus_font 
-    #unifont
-    # hack-font noto-fonts noto-fonts-cjk noto-fonts-emoji
-    # liberation_ttf fira-code fira-code-symbols mplus-outline-fonts
-    # dina-font proggyfonts source-code-pro
-  #];
 
   environment.variables = {
     EDITOR = "vim";
@@ -125,8 +121,6 @@ in {
   #   pinentryFlavor = "gnome3";
   # };
 
-  # List services that you want to enable:
-
 # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -136,11 +130,9 @@ in {
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  #   config volume interactively using alsamixer
+  # Enable sound: config volume interactively using alsamixer.
   sound.enable = true;
   hardware.pulseaudio.enable = true; 
-  users.extraUsers.jin.extraGroups = [ "audio" ]; 
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
@@ -151,7 +143,7 @@ in {
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jin = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "audio" "networkmanager" ]; # Enable ‘sudo’ for the user.
   };
 
   # This value determines the NixOS release from which the default
@@ -248,29 +240,6 @@ in {
       history.path = ".config/zsh/.zsh_history";
     };
   };
-# To use Lenivaya's gorgeous setup, enable the followings:
-# (admittedly I haven't figured it out fully.)
-#
-# cf. this issue: https://github.com/Lenivaya/dotfiles/issues/1
-# rmk. you might also want to download all configs to ~/.configs for it to work
-# properly.
-#
-#  services.xserver = {
-#    windowManager.xmonad = {
-#      extraPackages = haskellPackages: [
-#        haskellPackages.gloss
-#      ];
-#      haskellPackages = pkgs.unstable.haskellPackages;
-#    };
-#
-#  nixpkgs.overlays = [
-#    (self: super:
-#      with super; {
-#          unstable = import <unstable> { inherit config; };
-#      })
-#  ];
-#
-#################################################################
 
 console.font = "Lat2-Terminus16";
 
@@ -282,16 +251,4 @@ console.colors = []; # TODO: Find out its color codes!
 #                   "458588" "b16286" "689d6a" "a89984"
 #                   "928374" "fb4934" "b8bb26" "fabd2f"
 #                   "83a598" "d3869b" "83c07c" "ebdbb2" ];
-
-# Example colors given in the manpage
-#console.colors = [ "002b36" "dc322f" "859900" "b58900"
-#                   "268bd2" "d33682" "2aa198" "eee8d5"
-#                   "002b36" "cb4b16" "586e75" "657b83"
-#                   "839496" "6c71c4" "93a1a1" "fdf6e3" ];
-
-#console.colors = [ "3A3C43" "BE3E48" "869A3A" "C4A535"
-#                   "4E76A1" "855B8D" "568EA3" "B8BCB9"
-#                   "888987" "FB001E" "0E712E" "C37033"
-#                   "176CE3" "FB0067" "2D6F6C" "FCFFB8" ];
-#
 }
