@@ -68,7 +68,7 @@ in {
   environment.systemPackages = with pkgs; [
     wpa_supplicant_gui gcc binutils nix feh i3lock
     wget vim neovim sudo manpages gitAndTools.gitFull
-    trayer dmenu rofi scrot picom nitrogen
+    trayer dmenu scrot picom nitrogen
     haskellPackages.xmobar
     qutebrowser alacritty htop ranger unzip
 
@@ -97,7 +97,7 @@ in {
       wqy_microhei wqy_zenhei
       hack-font noto-fonts noto-fonts-cjk noto-fonts-emoji
       liberation_ttf fira-code fira-code-symbols mplus-outline-fonts
-      dina-font proggyfonts source-code-pro
+      dina-font proggyfonts source-code-pro inconsolata
     ];
 
     fontconfig.penultimate.enable = false;
