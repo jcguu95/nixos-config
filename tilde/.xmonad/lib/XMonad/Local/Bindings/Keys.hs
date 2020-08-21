@@ -214,7 +214,7 @@ myKeys mask = do
         ^> spawn =<< terminalFromConf
     bind $ mask ... xK_d
       |/- "spawn launcher"
-        ^> spawn "rofi -show run"
+        ^> spawn "dmenu_run -fn \"regular:pixelsize=25\""
     bind $ mask ... xK_r
       |/- "spawn ranger"
         ^> spawn =<< inTerminalFromConf "ranger"
