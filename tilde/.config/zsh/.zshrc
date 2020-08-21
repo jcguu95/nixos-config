@@ -123,6 +123,7 @@ ppp() {
 }
 
 ## History file configuration
+[ ! -d "$HOME/.local/share/zsh" ] && mkdir "$HOME/.local/share/zsh"
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.local/share/zsh/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=10000
