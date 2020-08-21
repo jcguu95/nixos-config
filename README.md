@@ -2,17 +2,16 @@
 
 ## TODOs
 
-+ Setup `dmenu` and recording tools. 
++ Setup `dmenu` and recording tools.
 + Setup `nvim`.
 + Setup `ssh` and a listening server.
-+ Now good setup for `zsh` is gone cuz of `~/.config` unsafe issue.. fix it
-  manually :(
 
 ### Harder
 
 + Compile lukesmith's build of `st` with nix derivation.
 + Setup development environment `haskell`.
 + Reproducibly configure `emacs`.
++ Setup ibus input method.
 + Understand source of `xmonad` and [apply
   transparency](https://stackoverflow.com/questions/43998105/making-every-window-transparent-with-xmonad/43998106#43998106).
 + Rescue `~/.config` from impurity :( .. this seems like a [hard
