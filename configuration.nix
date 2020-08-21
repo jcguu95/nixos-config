@@ -148,8 +148,10 @@ in {
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jin = {
+    uid = 1000;
     isNormalUser = true;
-    extraGroups = [ "wheel" "audio" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    createHome = true;
+    extraGroups = [ "wheel" "audio" "networkmanager" "systemd-journal" ]; # Enable ‘sudo’ for the user.
   };
 
   # This value determines the NixOS release from which the default
