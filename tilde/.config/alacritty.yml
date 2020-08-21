@@ -21,6 +21,13 @@ colors:
     cyan:    '0x83c07c'
     white:   '0xebdbb2'
 
+window:
+  padding:
+    x: 5
+    y: 5
+  
+    #decorations: transparent
+
 key_bindings: 
   - { key: P,        mods: Alt,       action: Paste                        }
   - { key: Y,        mods: Alt,       action: Copy                         }
