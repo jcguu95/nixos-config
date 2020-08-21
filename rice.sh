@@ -35,6 +35,6 @@ echo "  Done."
 
 ## ALL DONE! Fade off..
 echo "\n###All done. You can use `xmonad --restart` to see the effect."
-echo "Exit in 3 seconds..###"; sleep 3;
+echo "Exit in 1 seconds..###"; sleep 1;
 
 exit

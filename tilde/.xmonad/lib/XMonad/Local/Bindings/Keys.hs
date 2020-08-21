@@ -78,7 +78,7 @@ myKeys mask = do
               ] $ mask ... xK_BackSpace
       |/- "move focused floating window back into layout"
         ^> withFocused $ windows . S.sink
-    bind $ mask ... xK_equal
+    bind $ mask ... xK_f
       |/- "toggle fullscreen"
         ^> toggleFull
     bind $ mask .|. shiftMask ... xK_t
