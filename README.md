@@ -2,8 +2,8 @@
 
 ## TODOs
 
-+ Setup `dmenu` and recording tools.
 + Setup `nvim`.
++ Setup `dmenu` and recording tools.
 + Setup `ssh` and a listening server.
 
 ### Harder
