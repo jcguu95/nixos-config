@@ -163,13 +163,13 @@ in {
   system.stateVersion = "20.03"; # Did you read the comment?
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Enable sshd.
   # start/stop/check (resp.) by
   # `sudo systemctl start/stop/status sshd`
-  # TODO What's the difference between openssh?
-  services.sshd.enable = true;
+  # Good tutorial: https://linuxhint.com/arch_linux_ssh_server/
+  services.openssh = {
+    enable = true;
+    permitRootLogin = "no";
+  };
 
   services.xserver = {
     enable = true;
