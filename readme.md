@@ -2,6 +2,7 @@
 
 ## TODO
 
++ Setup memory limitation for zoom.
 + Compile lukesmith's build of `st` with nix derivation.
 + Setup development environment `haskell`.
 + Reproducibly configure `emacs`.
