@@ -209,6 +209,10 @@ myKeys mask = do
       |/- "take screenshot"
         ^> spawn "scrot"
 
+    bind $ mask ... xK_Print
+      |/- "spawn dmenurecord"
+        ^> spawn "dmenurecord"
+
     bind $ mask ... xK_Return
       |/- "spawn terminal"
         ^> spawn =<< terminalFromConf

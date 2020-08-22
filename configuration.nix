@@ -80,7 +80,7 @@ in {
     maim ripgrep rsync imagemagick
     gnupg youtube-dl sxiv xclip xsel hack-font curl ffmpeg tree
 
-    ueberzug # image previewer in ranger
+    ueberzug xorg.xdpyinfo # image previewer in ranger
 
     #unrar ## -- taken away as it's not free
     unzip xz zip firefox
