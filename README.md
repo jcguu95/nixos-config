@@ -2,7 +2,6 @@
 
 ## TODOs
 
-+ Setup recording tools.
 + Setup `ssh` and a listening server.
 
 ### Harder
@@ -13,6 +12,7 @@
 + Setup ibus input method.
 + Understand source of `xmonad` and [apply
   transparency](https://stackoverflow.com/questions/43998105/making-every-window-transparent-with-xmonad/43998106#43998106).
++ Understand how to tweak xmobar and integrate it with dmenurecord.
 + Rescue `~/.config` from impurity :( .. this seems like a [hard
   issue](https://github.com/rycee/home-manager/issues/257).
 + Setup dictionary in qutebrowser.
