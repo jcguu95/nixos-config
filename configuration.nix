@@ -80,7 +80,7 @@ in {
     maim ripgrep rsync imagemagick
     gnupg youtube-dl sxiv xclip xsel hack-font curl ffmpeg tree
 
-    ueberzug xorg.xdpyinfo # image previewer in ranger
+    ueberzug xorg.xdpyinfo neofetch # image previewer in ranger
 
     #unrar ## -- taken away as it's not free
     unzip xz zip firefox
@@ -169,7 +169,11 @@ in {
   services.openssh = {
     enable = true;
     permitRootLogin = "no";
+    #forwardX11 = true;
   };
+  # see issue github/NixOS/nixpkgs/issues/19246
+  #programs.ssh.forwardX11 = true;
+  #programs.ssh.setXAuthLocation = true;
 
   services.xserver = {
     enable = true;

@@ -12,6 +12,9 @@
 + Rescue `~/.config` from impurity :( .. this seems like a [hard
   issue](https://github.com/rycee/home-manager/issues/257).
 + Setup dictionary in qutebrowser.
++ Enable Xforwarding correctly and let remore client startx.
++ Bind right_alt keys and hjkl to arrows.
++ Get the rgb code of the color palette of the default putty.
 
 # Acknowledgement
 

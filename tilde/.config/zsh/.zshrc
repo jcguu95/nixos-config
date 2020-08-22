@@ -2,7 +2,6 @@ source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.config/zsh/zsh-autocomplete/zsh-autocomplete.zsh
 source ~/.config/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
-
 autoload -U colors && colors
 PS1="%{$fg[yellow]%}<%n@%M$> "
 setopt prompt_subst

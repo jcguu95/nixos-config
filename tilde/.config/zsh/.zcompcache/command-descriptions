@@ -1,0 +1,4 @@
+_command_descriptions=( ${(Q)"${(z)$(<<\EO:_command_descriptions
+
+EO:_command_descriptions
+)}"} )
