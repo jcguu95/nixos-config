@@ -209,8 +209,12 @@ myKeys mask = do
       |/- "take screenshot"
         ^> spawn "scrot"
 
+    bind $ mask .|. shiftMask ... xK_Print
+      |/- "spawn script `maimpick` for various screenshot options"
+        ^> spawn "maimpick"
+
     bind $ mask ... xK_Print
-      |/- "spawn dmenurecord"
+      |/- "spawn script dmenurecord for various recording options"
         ^> spawn "dmenurecord"
 
     bind $ mask ... xK_Return
