@@ -171,7 +171,8 @@ in {
     permitRootLogin = "no";
     #forwardX11 = true;
   };
-  # see issue github/NixOS/nixpkgs/issues/19246
+  # TODO see issue github/NixOS/nixpkgs/issues/19246
+  # # didn't work
   #programs.ssh.forwardX11 = true;
   #programs.ssh.setXAuthLocation = true;
 
