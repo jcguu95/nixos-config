@@ -1,5 +1,7 @@
 $'/home/jin/nixos-config'
 $'/home/jin'
+$'/tmp'
+$'/home/jin/nixos-config/tilde/.config/qutebrowser'
 $'/home/jin/.config/zsh'
 $'/home/jin/.config'
 $'/home/jin/.config/nvim'

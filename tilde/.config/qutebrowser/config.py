@@ -26,7 +26,7 @@ config.set('tabs.position', "top")
 config.set('content.plugins', True)
 config.set('url.default_page', "file:///"+os.environ["HOME"]+"/.config/qutebrowser/void.html")
 config.set('url.start_pages', "file:///"+os.environ["HOME"]+"/.config/qutebrowser/void.html")
-config.set('editor.command', ["/usr/bin/vim", "-f", "{file}", "-c", "normal {line}G{column0}l"])
+config.set('editor.command', ["alacritty", "-e", "nvim", "{}"]) # killer feature :D :D
 config.set('zoom.default', 120)
 # Change 'd' to 'dd', so I won't close it unpurposely while scrolling down with <Ctrl-d>. It's also more Vim-like!
 config.bind('dd', "tab-close")
@@ -46,7 +46,7 @@ config.bind('clear',"spawn --userscript "+os.environ["HOME"]+"/.scripts/qutebrow
 
 # User Scripts!
 config.bind(';m',"hint links spawn mpv {hint-url}")
-config.bind(';M',"spawn mpv {url}") 
+config.bind(';M',"spawn mpv {url}")
 config.bind('aa',"spawn --userscript "+os.environ["HOME"]+"/.scripts/qutebrowser-userscripts/save_for_yta")
 config.bind('av',"spawn --userscript "+os.environ["HOME"]+"/.scripts/qutebrowser-userscripts/save_for_ytv")
 config.bind(';aa',"hint links userscript "+os.environ["HOME"]+"/.scripts/qutebrowser-userscripts/save_for_yta")
