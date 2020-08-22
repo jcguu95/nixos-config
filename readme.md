@@ -1,10 +1,6 @@
 # Nix is the future
 
-## TODOs
-
-+ Setup `ssh` and a listening server.
-
-### Harder
+## TODO
 
 + Compile lukesmith's build of `st` with nix derivation.
 + Setup development environment `haskell`.

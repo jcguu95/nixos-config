@@ -10,9 +10,9 @@
 let
   home-manager = builtins.fetchGit {
     url = "https://github.com/rycee/home-manager.git";
-    rev = "dd94a849df69fe62fe2cb23a74c2b9330f1189ed"; # CHANGEME 
+    rev = "dd94a849df69fe62fe2cb23a74c2b9330f1189ed"; # CHANGEME
     ref = "release-18.09";
-  }; 
+  };
   tilde = "/home/jin/nixos-config/tilde"; ### should be changed manually while running the first time after fresh installing nixos
 in {
   imports =
@@ -75,8 +75,8 @@ in {
     haskellPackages.xmobar
     qutebrowser alacritty htop ranger unzip poppler
 
-    irssi xcape zathura ghostscript 
-    emacs mupdf tree fzf less ledger 
+    irssi xcape zathura ghostscript
+    emacs mupdf tree fzf less ledger
     maim ripgrep rsync imagemagick
     gnupg youtube-dl sxiv xclip xsel hack-font curl ffmpeg tree
 
@@ -84,7 +84,7 @@ in {
 
     #unrar ## -- taken away as it's not free
     unzip xz zip firefox
-    vlc mpv 
+    vlc mpv
   ];
 
   # Despite looking like normal packages, simply adding these font packages to
@@ -98,7 +98,7 @@ in {
       terminus_font ## This is the font I like, use `fc-list | grep Terminus` to see its name <3
       unifont
       wqy_microhei wqy_zenhei
-      hack-font noto-fonts noto-fonts-cjk noto-fonts-emoji 
+      hack-font noto-fonts noto-fonts-cjk noto-fonts-emoji
       liberation_ttf fira-code fira-code-symbols mplus-outline-fonts
       dina-font proggyfonts source-code-pro inconsolata
       # unfree: symbola
@@ -138,7 +138,7 @@ in {
 
   # Enable sound: config volume interactively using alsamixer.
   sound.enable = true;
-  hardware.pulseaudio.enable = true; 
+  hardware.pulseaudio.enable = true;
 
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
@@ -164,7 +164,12 @@ in {
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-  services.sshd.enable = true; # what's the difference??
+
+  # Enable sshd.
+  # start/stop/check (resp.) by
+  # `sudo systemctl start/stop/status sshd`
+  # TODO What's the difference between openssh?
+  services.sshd.enable = true;
 
   services.xserver = {
     enable = true;
@@ -179,11 +184,11 @@ in {
     };
     desktopManager.xterm.enable = false;
     displayManager.startx.enable = true;
-    # capslock => control 
+    # capslock => control
     xkbOptions = "ctrl:nocaps"; # now capslock means control :)
   };
 
-  home-manager.users.jin = { 
+  home-manager.users.jin = {
     programs.home-manager.enable = true;
 
     home.file = {
@@ -220,12 +225,12 @@ in {
     };
 
     #programs.git = {
-    #  enable = true; 
+    #  enable = true;
     #  userName = "jcguu95";
-    #  userEmail = "jcguu95@gmail.com"; 
+    #  userEmail = "jcguu95@gmail.com";
     #};
 
-    programs.vim = { 
+    programs.vim = {
       enable = true;
       settings = {
         relativenumber = true;
