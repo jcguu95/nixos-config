@@ -102,5 +102,5 @@ case "$1" in
 	audio) audio;;
 	video) video;;
 	kill) killrecording;;
-	*) ([ -f /tmp/recordingpid ] && asktoend && exit) || askrecording;;
+	*) ([ -f /tmp/recordingpid ] && asktoend && exit);; 
 esac

@@ -19,7 +19,7 @@ config.set('fonts.default_family', "xos4 Terminus") # works for archlinux
 config.set('auto_save.interval', 5000)
 config.set('auto_save.session', True)
 config.set('content.pdfjs', False)
-config.set('downloads.location.directory', "~/+INBOX")
+config.set('downloads.location.directory', "~/")
 config.set('messages.timeout', 30000)
 config.set('spellcheck.languages', ["en-US"]) # ..?
 config.set('tabs.position', "top")
@@ -28,7 +28,6 @@ config.set('url.default_page', "file:///"+os.environ["HOME"]+"/.config/qutebrows
 config.set('url.start_pages', "file:///"+os.environ["HOME"]+"/.config/qutebrowser/void.html")
 config.set('editor.command', ["/usr/bin/vim", "-f", "{file}", "-c", "normal {line}G{column0}l"])
 config.set('zoom.default', 120)
-
 # Change 'd' to 'dd', so I won't close it unpurposely while scrolling down with <Ctrl-d>. It's also more Vim-like!
 config.bind('dd', "tab-close")
 config.unbind('d')
@@ -46,6 +45,8 @@ config.bind('xo',"set-cmd-text -s :open") ## Open a new tab replacing the curren
 config.bind('clear',"spawn --userscript "+os.environ["HOME"]+"/.scripts/qutebrowser-userscripts/backup_and_clear_history")
 
 # User Scripts!
+config.bind(';m',"hint links spawn mpv {hint-url}")
+config.bind(';M',"spawn mpv {url}") 
 config.bind('aa',"spawn --userscript "+os.environ["HOME"]+"/.scripts/qutebrowser-userscripts/save_for_yta")
 config.bind('av',"spawn --userscript "+os.environ["HOME"]+"/.scripts/qutebrowser-userscripts/save_for_ytv")
 config.bind(';aa',"hint links userscript "+os.environ["HOME"]+"/.scripts/qutebrowser-userscripts/save_for_yta")

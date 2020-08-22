@@ -81,7 +81,7 @@ myKeys mask = do
     bind $ mask ... xK_f
       |/- "toggle fullscreen"
         ^> toggleFull
-    bind $ mask .|. shiftMask ... xK_t
+    bind $ mask ... xK_g 
       |/- "toggle gaps"
         ^> toggleGaps
     bind $ mask ... xK_space
