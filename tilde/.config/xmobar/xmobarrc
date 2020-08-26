@@ -41,7 +41,7 @@ Config {
   , sepChar  = "%"   -- delineator between plugin names and straight text
   , alignSep = "}{"  -- separator between left-right alignment
 
-  -- , template = " %battery% %cpu% %multicoretemp% %memory% %dynnetwork% %kbd%} %UnsafeStdinReader% {%mail% %mpd% %KLWC% %date% "
+  -- , template = " %battery% %cpu% %multicoretemp% %memory% %dynnetwork% %kbd%} %UnsafeStdinReader% {%mail% %mpd% %EDDV% %date% "
   , template = " %default:Master% %battery% %cpu% %multicoretemp% %memory% %dynnetwork%%wi%} %UnsafeStdinReader% {%KLWC% %date% "
 
   , lowerOnStart     = True    -- send to bottom of window stack on start
@@ -153,29 +153,30 @@ Config {
        --             , ("<fc=#5f819d>U</fc>" , "~/.mail/stud-uni-hannover/INBOX")
        --             ] "mail"
 
-       , Run WeatherX "KLWC" [ (""                        , "<fc=#5e8d87>?</fc>")
-                             , ("clear"                   , "<icon=weather/weather_sunny.xpm/>")
-                             , ("mostly clear"            , "<icon=weather/weather_mostly_sunny.xpm/>")
-                             , ("sunny"                   , "<icon=weather/weather_sunny.xpm/>")
-                             , ("mostly sunny"            , "<icon=weather/weather_mostly_sunny.xpm/>")
-                             , ("partly sunny"            , "<icon=weather/weather_mostly_cloudy.xpm/>")
-                             , ("cloudy"                  , "<icon=weather/weather_cloudy.xpm/>")
-                             , ("mostly cloudy"           , "<icon=weather/weather_mostly_cloudy.xpm/>")
-                             , ("partly cloudy"           , "<icon=weather/weather_mostly_sunny.xpm/>")
-                             , ("fair"                    , "<icon=weather/weather_sunny.xpm/>")
-                             , ("overcast"                , "<icon=weather/weather_cloudy.xpm/>")
-                             , ("considerable cloudiness" , "<icon=weather/weather_cloudy.xpm/>")
-                             , ("obscured"                , "<icon=weather/weather_obscured.xpm/>")
-                             ] [ "--template", "<skyConditionS><tempC>°C <fc=#5f819d><rh></fc>% <fc=#81a2be><pressure></fc>hPa"
-                               , "--Low"      , "10"      -- units: %
-                               , "--High"     , "20"      -- units: %
-                               , "--low"      , "#81a2be"
-                               , "--normal"   , "#b5bd68"
-                               , "--high"     , "#de935f"
-                               , "--ppad"      , "3"
-                               , "--width"     , "3"
-                               , "--maxtwidth" , "18"
-                               ] 36000
+       , Run WeatherX "KLWC" -- search the ICAO code for your city
+                      [ (""                        , "<fc=#5e8d87>?</fc>")
+                      , ("clear"                   , "<icon=weather/weather_sunny.xpm/>")
+                      , ("mostly clear"            , "<icon=weather/weather_mostly_sunny.xpm/>")
+                      , ("sunny"                   , "<icon=weather/weather_sunny.xpm/>")
+                      , ("mostly sunny"            , "<icon=weather/weather_mostly_sunny.xpm/>")
+                      , ("partly sunny"            , "<icon=weather/weather_mostly_cloudy.xpm/>")
+                      , ("cloudy"                  , "<icon=weather/weather_cloudy.xpm/>")
+                      , ("mostly cloudy"           , "<icon=weather/weather_mostly_cloudy.xpm/>")
+                      , ("partly cloudy"           , "<icon=weather/weather_mostly_sunny.xpm/>")
+                      , ("fair"                    , "<icon=weather/weather_sunny.xpm/>")
+                      , ("overcast"                , "<icon=weather/weather_cloudy.xpm/>")
+                      , ("considerable cloudiness" , "<icon=weather/weather_cloudy.xpm/>")
+                      , ("obscured"                , "<icon=weather/weather_obscured.xpm/>")
+                      ] [ "--template", "<skyConditionS><tempC>°C <fc=#5f819d><rh></fc>% <fc=#81a2be><pressure></fc>hPa"
+                        , "--Low"      , "10"      -- units: %
+                        , "--High"     , "20"      -- units: %
+                        , "--low"      , "#81a2be"
+                        , "--normal"   , "#b5bd68"
+                        , "--high"     , "#de935f"
+                        , "--ppad"      , "3"
+                        , "--width"     , "3"
+                        , "--maxtwidth" , "18"
+                        ] 36000
 
        , Run Date "%a %Y-%m-%d %T" "date" 10
 
