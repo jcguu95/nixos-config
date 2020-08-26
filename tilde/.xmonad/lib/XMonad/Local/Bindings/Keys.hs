@@ -81,7 +81,7 @@ myKeys mask = do
     bind $ mask ... xK_f
       |/- "toggle fullscreen"
         ^> toggleFull
-    bind $ mask ... xK_g 
+    bind $ mask ... xK_g
       |/- "toggle gaps"
         ^> toggleGaps
     bind $ mask ... xK_space
@@ -169,15 +169,15 @@ myKeys mask = do
     bindAlias [ mask ... stringToKeysym "XF86AudioLowerVolume"
               ] $ mask .|. controlMask ... xK_minus
       |/- "decrease volume"
-        ^> spawn "volume down"
+        ^> spawn "amixer set Master 3%-"
     bindAlias [ mask ... stringToKeysym "XF86AudioRaiseVolume"
-              ] $ mask .|. controlMask .|. shiftMask ... xK_equal
+              ] $ mask .|. controlMask ... xK_equal
       |/- "increase volume"
-        ^> spawn "volume up"
+        ^> spawn "amixer set Master 3%+"
     bindAlias [ mask ... stringToKeysym "XF86AudioMute"
               ] $ mask .|. controlMask ... xK_0
-      |/- "mute volume"
-        ^> spawn "volume mute"
+      |/- "(un)mute volume"
+        ^> spawn "amixer set Master toggle"
     bindAlias [ mask ... stringToKeysym "XF86AudioMicMute"
               ] $ mask .|. controlMask ... xK_bracketright
       |/- "mute microphone"
@@ -229,6 +229,9 @@ myKeys mask = do
     bind $ mask ... xK_w
       |/- "spawn qutebrowser"
         ^> spawnOnAndGoTo WsBrowser "qutebrowser"
+    bind $ mask ... xK_e
+      |/- "spawn emacsclient (need emacs daemon launched)"
+        ^> spawn "emacsclient -c"
     -- bind $ mask .|. controlMask ... xK_m
     --   |/- "fetch mail"
     --     ^> spawnOn (show WsOther) =<< inTerminalFromConf "offlineimap"

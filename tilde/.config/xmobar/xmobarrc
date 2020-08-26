@@ -42,7 +42,7 @@ Config {
   , alignSep = "}{"  -- separator between left-right alignment
 
   -- , template = " %battery% %cpu% %multicoretemp% %memory% %dynnetwork% %kbd%} %UnsafeStdinReader% {%mail% %mpd% %EDDV% %date% "
-  , template = " %battery% %cpu% %multicoretemp% %memory% %dynnetwork% %wi%} %UnsafeStdinReader% {%EDDV% %date% "
+  , template = " %default:Master% %battery% %cpu% %multicoretemp% %memory% %dynnetwork%%wi%} %UnsafeStdinReader% {%EDDV% %date% "
 
   , lowerOnStart     = True    -- send to bottom of window stack on start
   , hideOnStart      = False   -- start with window unmapped (hidden)
@@ -133,6 +133,8 @@ Config {
                          , "--normal"   , "#de935f"
                          , "--high"     , "#b5bd68"
 			 ] 10
+
+       , Run Volume "default" "Master" [ "-t", "<volume>%<icon=music/music_playing.xpm/>" ] 10
 
        --  , Run Kbd [ ("de" , "<fc=#cc6666>DE</fc>")
        --            , ("us" , "<fc=#b5bd68>US</fc>")
