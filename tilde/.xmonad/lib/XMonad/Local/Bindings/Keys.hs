@@ -230,8 +230,14 @@ myKeys mask = do
       |/- "spawn qutebrowser"
         ^> spawnOnAndGoTo WsBrowser "qutebrowser"
     bind $ mask ... xK_e
-      |/- "spawn emacsclient (need emacs daemon launched)"
+      |/- "spawn emacsclient"
         ^> spawn "emacsclient -c"
+    bind $ mask ... xK_n
+      |/- "spawn nmtui: network config"
+        ^> spawn =<< inTerminalFromConf "nmtui"
+    bind $ mask ... xK_v
+      |/- "spawn pulsemixer: audio config"
+        ^> spawn =<< inTerminalFromConf "pulsemixer"
     -- bind $ mask .|. controlMask ... xK_m
     --   |/- "fetch mail"
     --     ^> spawnOn (show WsOther) =<< inTerminalFromConf "offlineimap"
