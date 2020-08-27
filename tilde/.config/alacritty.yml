@@ -1,7 +1,7 @@
 colors:
   primary:
     background: '0x282828'
-    foreground: '0xebdbb2' 
+    foreground: '0xebdbb2'
   normal:
     black:   '0x282828'
     red:     '0xcc241d'
@@ -10,7 +10,7 @@ colors:
     blue:    '0x458588'
     magenta: '0xb16286'
     cyan:    '0x689d6a'
-    white:   '0xa89984' 
+    white:   '0xa89984'
   bright:
     black:   '0x928374'
     red:     '0xfb4934'
@@ -25,16 +25,22 @@ window:
   padding:
     x: 5
     y: 5
-  
+
     #decorations: transparent
 
-key_bindings: 
+key_bindings:
   - { key: P,        mods: Alt,       action: Paste                        }
   - { key: Y,        mods: Alt,       action: Copy                         }
   - { key: Insert,   mods: Alt,       action: PasteSelection               }
   - { key: Equals,   mods: Alt,       action: ResetFontSize                }
   - { key: K,        mods: Alt|Shift, action: IncreaseFontSize             }
   - { key: J,        mods: Alt|Shift, action: DecreaseFontSize             }
+  - { key: K,        mods: Alt,       action: ScrollLineUp                 }
+  - { key: J,        mods: Alt,       action: ScrollLineDown               }
+  - { key: U,        mods: Alt,       action: ScrollHalfPageUp             }
+  - { key: D,        mods: Alt,       action: ScrollHalfPageDown           }
+  - { key: F,        mods: Alt,       action: ScrollPageUp                 }
+  - { key: B,        mods: Alt,       action: ScrollPageDown               }
   - { key: Home,                      chars: "\x1bOH",   mode: AppCursor   }
   - { key: Home,                      chars: "\x1b[H",   mode: ~AppCursor  }
   - { key: End,                       chars: "\x1bOF",   mode: AppCursor   }
@@ -69,7 +75,7 @@ key_bindings:
   - { key: Down,     mods: Control,   chars: "\x1b[1;5B"                   }
   - { key: Down,     mods: Alt,       chars: "\x1b[1;3B"                   }
 
-mouse: 
+mouse:
   url:
     launcher:
       program: qutebrowser
