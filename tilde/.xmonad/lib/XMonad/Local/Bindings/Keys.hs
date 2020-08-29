@@ -230,8 +230,8 @@ myKeys mask = do
       |/- "spawn qutebrowser"
         ^> spawnOnAndGoTo WsBrowser "qutebrowser"
     bind $ mask ... xK_e
-      |/- "spawn emacsclient: make sure emacs"
-        ^> spawnOnAndGoTo WsBrowser "qutebrowser"
+      |/- "spawn emacsclient"
+        ^> spawn "emacsclient -c"
      -- Rotate through the available layout algorithms
     bind $ mask ... xK_space
       |/- "testing: new layout"
