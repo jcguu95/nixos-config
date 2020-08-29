@@ -35,7 +35,7 @@ import XMonad.Local.Layout.Util ( toggleFull
 
 myKeys :: KeyMask -> Binder ()
 myKeys mask = do
-    bind $ mask ... xK_F1
+    bind $ mask ... xK_F2
       |/- "view bindings"
         ^> do doc <- getBindings
               term <- terminalFromConf
@@ -80,7 +80,7 @@ myKeys mask = do
         ^> withFocused $ windows . S.sink
     bind $ mask ... xK_f
       |/- "toggle fullscreen"
-        ^> toggleFull
+        ^> toggleFull -- TODO: not working after attempt to change layout from jumper's
     bind $ mask ... xK_g
       |/- "toggle gaps"
         ^> toggleGaps
@@ -236,6 +236,12 @@ myKeys mask = do
     bind $ mask ... xK_space
       |/- "testing: new layout"
         ^> sendMessage NextLayout
+    bind $ mask ... xK_n
+      |/- "spawn nmtui: network config"
+        ^> spawn =<< inTerminalFromConf "nmtui"
+    bind $ mask ... xK_v
+      |/- "spawn pulsemixer: audio config"
+        ^> spawn =<< inTerminalFromConf "pulsemixer"
     -- bind $ mask .|. controlMask ... xK_m
     --   |/- "fetch mail"
     --     ^> spawnOn (show WsOther) =<< inTerminalFromConf "offlineimap"
