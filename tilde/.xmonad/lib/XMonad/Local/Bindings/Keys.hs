@@ -136,14 +136,14 @@ myKeys mask = do
     bindZip ((mask .|. shiftMask ...) <$> [ xK_1 .. xK_9 ])
             (("move focused window to workspace " <>) . pure <$> [ '1' .. '9' ])
             (windows . S.shift <$> workspaceIds)
-    bindAlias [ mask ... xK_Left
-              ] $ mask ... xK_h
-      |/- "go to next Xinerama screen"
-        ^> screenWorkspace 0 >>= flip whenJust (windows . S.view)
-    bindAlias [ mask ... xK_Right
-              ] $ mask ... xK_l
-      |/- "go to previous Xinerama screen"
-        ^> screenWorkspace 1 >>= flip whenJust (windows . S.view)
+    -- bindAlias [ mask ... xK_Left
+    --           ] $ mask ... xK_h
+    --   |/- "go to next Xinerama screen"
+    --     ^> screenWorkspace 0 >>= flip whenJust (windows . S.view)
+    -- bindAlias [ mask ... xK_Right
+    --           ] $ mask ... xK_l
+    --   |/- "go to previous Xinerama screen"
+    --     ^> screenWorkspace 1 >>= flip whenJust (windows . S.view)
 
     bind $ mask .|. shiftMask ... xK_r
       |/- "restart xmonad"
@@ -230,14 +230,12 @@ myKeys mask = do
       |/- "spawn qutebrowser"
         ^> spawnOnAndGoTo WsBrowser "qutebrowser"
     bind $ mask ... xK_e
-      |/- "spawn emacsclient"
-        ^> spawn "emacsclient -c"
-    bind $ mask ... xK_n
-      |/- "spawn nmtui: network config"
-        ^> spawn =<< inTerminalFromConf "nmtui"
-    bind $ mask ... xK_v
-      |/- "spawn pulsemixer: audio config"
-        ^> spawn =<< inTerminalFromConf "pulsemixer"
+      |/- "spawn emacsclient: make sure emacs"
+        ^> spawnOnAndGoTo WsBrowser "qutebrowser"
+     -- Rotate through the available layout algorithms
+    bind $ mask ... xK_space
+      |/- "testing: new layout"
+        ^> sendMessage NextLayout
     -- bind $ mask .|. controlMask ... xK_m
     --   |/- "fetch mail"
     --     ^> spawnOn (show WsOther) =<< inTerminalFromConf "offlineimap"

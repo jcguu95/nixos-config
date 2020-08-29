@@ -26,6 +26,16 @@ import XMonad.Local.Startup.Hook ( myStartupHook
 import XMonad.Local.Urgency.Hook ( applyUrgencyHook
                                  )
 
+-- testing
+
+import XMonad.Layout.Tabbed
+import XMonad.Layout.Circle
+import XMonad.Layout.ThreeColumns
+import XMonad.Layout.Spiral
+import XMonad.Hooks.ManageDocks
+
+---
+
 main :: IO ()
 main = do xmproc <- spawnXMobar
           let (applicableKeys , explainableBindings) = mapBindings $ myKeys . modMask
@@ -38,10 +48,38 @@ main = do xmproc <- spawnXMobar
                       , modMask            = mod4Mask
                       , keys               = applicableKeys
                       , workspaces         = workspaceIds
-                      , layoutHook         = myLayoutHook
+                      -- , layoutHook         = myLayoutHook
+                      , layoutHook         = myLayout
                       , manageHook         = myManageHook
                       , startupHook        = myStartupHook
                       , logHook            = myLogHook xmproc
                       }
               fc = storeBindings explainableBindings . docks . applyUrgencyHook . ewmh $ c
           xmonad fc
+
+
+
+
+--- testing
+
+myLayout = avoidStruts $
+           tiled
+           ||| Mirror tiled
+           ||| Full
+           ||| tabbed shrinkText defaultTheme
+           ||| threeCol
+--           ||| spiral (4/3)
+  where
+     -- default tiling algorithm partitions the screen into two panes
+     tiled   = Tall nmaster delta ratio
+
+     threeCol = ThreeCol nmaster delta ratio
+
+     -- The default number of windows in the master pane
+     nmaster = 1
+
+     -- Default proportion of screen occupied by master pane
+     ratio   = 1/2
+
+     -- Percent of screen to increment by when resizing panes
+     delta   = 2/100
