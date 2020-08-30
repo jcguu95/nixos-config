@@ -32,6 +32,9 @@ import XMonad.Layout.Tabbed
 import XMonad.Layout.Circle
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.Spiral
+import XMonad.Layout.NoBorders
+import XMonad.Layout.MultiToggle
+import XMonad.Layout.MultiToggle.Instances
 import XMonad.Hooks.ManageDocks
 
 ---
@@ -57,29 +60,21 @@ main = do xmproc <- spawnXMobar
               fc = storeBindings explainableBindings . docks . applyUrgencyHook . ewmh $ c
           xmonad fc
 
-
-
-
 --- testing
 
-myLayout = avoidStruts $
+myLayout = smartBorders $ mkToggle (NOBORDERS ?? FULL ?? EOT) $ avoidStruts $
            tiled
            ||| Mirror tiled
-           ||| Full
-           ||| tabbed shrinkText defaultTheme
+--         ||| Full
+--         ||| tabbed shrinkText defaultTheme
            ||| threeCol
---           ||| spiral (4/3)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
-
      threeCol = ThreeCol nmaster delta ratio
-
      -- The default number of windows in the master pane
      nmaster = 1
-
      -- Default proportion of screen occupied by master pane
      ratio   = 1/2
-
      -- Percent of screen to increment by when resizing panes
      delta   = 2/100

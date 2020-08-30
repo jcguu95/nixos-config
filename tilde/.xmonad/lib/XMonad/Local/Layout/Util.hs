@@ -125,7 +125,7 @@ tabTheme = def { activeColor         = T.activeColor         T.myTheme
                }
 
 toggleFull :: X ()
-toggleFull = sendMessage $ Toggle NBFULL
+toggleFull = sendMessage $ Toggle FULL
 
 -- | Toggle gaps on the current workspace.
 toggleGaps :: X ()
