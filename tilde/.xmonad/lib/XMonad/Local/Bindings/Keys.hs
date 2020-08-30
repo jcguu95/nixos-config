@@ -148,7 +148,7 @@ myKeys mask = do
     bind $ mask .|. shiftMask .|. controlMask ... xK_q
       |/- "restart xmonad"
         ^> restart "xmonad" True
-    bind $ mask .|. shiftMask ... xK_l
+    bind $ mask .|. shiftMask .|. controlMask ... xK_l
       |/- "i3lock"
         ^> spawn "i3lock -c '112211' -f"
 
