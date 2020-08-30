@@ -229,9 +229,11 @@ myKeys mask = do
     bind $ mask ... xK_e
       |/- "spawn emacsclient"
         ^> spawn "emacsclient -c"
-    bind $ mask .|. shiftMask ... xK_e
-      |/- "spawn emacsclient"
-        ^> spawn "emacsclient -t"
+    -- TODO this doesn't work.. why?
+    -- bind $ mask .|. shiftMask ... xK_e
+    --   |/- "spawn emacsclient in terminal"
+    --     ^> spawn =<< inTerminalFromConf "emacsclient -t"
+
      -- Rotate through the available layout algorithms
     bind $ mask ... xK_space
       |/- "testing: new layout"

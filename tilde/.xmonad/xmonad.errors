@@ -1,4 +1,3 @@
-Loaded package environment from /home/jin/.ghc/x86_64-linux-8.8.3/environments/default
 
 xmonad.hs:69:34: warning: [-Wdeprecations]
     In the use of ‘defaultTheme’
