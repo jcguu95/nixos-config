@@ -145,13 +145,10 @@ myKeys mask = do
     --   |/- "go to previous Xinerama screen"
     --     ^> screenWorkspace 1 >>= flip whenJust (windows . S.view)
 
-    bind $ mask .|. shiftMask ... xK_r
+    bind $ mask .|. shiftMask .|. controlMask ... xK_q
       |/- "restart xmonad"
         ^> restart "xmonad" True
-    bind $ mask .|. shiftMask ... xK_e
-      |/- "shutdown menu"
-        ^> spawn "${XMONAD_CONFIG_DIR}/bin/shutdown"
-    bind $ mask .|. shiftMask ... xK_w
+    bind $ mask .|. shiftMask ... xK_l
       |/- "i3lock"
         ^> spawn "i3lock -c '112211' -f"
 
@@ -232,6 +229,9 @@ myKeys mask = do
     bind $ mask ... xK_e
       |/- "spawn emacsclient"
         ^> spawn "emacsclient -c"
+    bind $ mask .|. shiftMask ... xK_e
+      |/- "spawn emacsclient"
+        ^> spawn "emacsclient -t"
      -- Rotate through the available layout algorithms
     bind $ mask ... xK_space
       |/- "testing: new layout"
