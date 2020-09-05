@@ -13,8 +13,6 @@ map D toggle_page_mode
 
 map u scroll half-up
 map d scroll half-down
-map K zoom in
-map J zoom out
 
 map <C-g> toggle_index
 map <C-m> toggle_statusbar
