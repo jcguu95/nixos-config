@@ -82,6 +82,9 @@ in {
 
     ueberzug xorg.xdpyinfo neofetch # image previewer in ranger
 
+    #ibus ### this doesn't work for me so far cuz ibus-chewing hasn't been packaged yet.
+    fcitx-configtool # fcitx-engines.chewing
+
     #unrar ## -- taken away as it's not free
     unzip xz zip firefox
     vlc mpv
@@ -101,16 +104,18 @@ in {
       hack-font noto-fonts noto-fonts-cjk noto-fonts-emoji
       liberation_ttf fira-code fira-code-symbols mplus-outline-fonts
       dina-font proggyfonts source-code-pro inconsolata
+
       # unfree: symbola
     ];
 
     fontconfig.penultimate.enable = false;
-    fontconfig.defaultFonts = {
-      # IMO WQY Zen Hei plays slightly better with Terminus
-      serif     = ["Terminus" "WenQuanYi Zen Hei" "Unifont" "WenQuanYi Micro Hei"];
-      sansSerif = ["Terminus" "WenQuanYi Zen Hei" "Unifont" "WenQuanYi Micro Hei"];
-      monospace = ["Terminus" "WenQuanYi Zen Hei" "Unifont" "WenQuanYi Micro Hei"];
-    };
+    ### These default might break some programs, like fcitx-configtool
+    #fontconfig.defaultFonts = {
+    #  # IMO WQY Zen Hei plays slightly better with Terminus
+    #  serif     = ["Terminus" "WenQuanYi Zen Hei" "Unifont" "WenQuanYi Micro Hei"];
+    #  sansSerif = ["Terminus" "WenQuanYi Zen Hei" "Unifont" "WenQuanYi Micro Hei"];
+    #  monospace = ["Terminus" "WenQuanYi Zen Hei" "Unifont" "WenQuanYi Micro Hei"];
+    #};
   };
 
   environment.variables = {
@@ -259,6 +264,11 @@ in {
     #  history.path = ".config/zsh/.zsh_history";
     #};
   };
+
+i18n.inputMethod = {
+  enabled = "fcitx";
+  fcitx.engines = with pkgs.fcitx-engines; [ chewing ];
+};
 
 console.font = "Lat2-Terminus16";
 

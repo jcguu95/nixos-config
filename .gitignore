@@ -2,3 +2,4 @@
 *.hi
 *.o
 *x86_64-linux
+*fcitx*

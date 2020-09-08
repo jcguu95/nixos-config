@@ -6,7 +6,6 @@
 + Compile lukesmith's build of `st` with nix derivation.
 + Setup development environment `haskell`.
 + Reproducibly configure `emacs`.
-+ Setup ibus input method.
 + Understand source of `xmonad` and [apply
   transparency](https://stackoverflow.com/questions/43998105/making-every-window-transparent-with-xmonad/43998106#43998106).
 + Understand how to tweak xmobar and integrate it with dmenurecord.
