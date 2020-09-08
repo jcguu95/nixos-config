@@ -204,7 +204,7 @@ myKeys mask = do
     bindAlias [ noModMask ... stringToKeysym "Print"
               ] $ mask ... stringToKeysym "Print"
       |/- "take screenshot"
-        ^> spawn "scrot -q 10"
+        ^> spawn "scrot -q 35 ~/%Y%m%d-%H%M%S_scrot.jpg"
 
     bind $ mask .|. shiftMask ... xK_Print
       |/- "spawn script `maimpick` for various screenshot options"
