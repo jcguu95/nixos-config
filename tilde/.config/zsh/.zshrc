@@ -3,10 +3,7 @@ source ~/.config/zsh/zsh-autocomplete/zsh-autocomplete.zsh
 source ~/.config/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 
 autoload -U colors && colors
-PS1="%{$fg[yellow]%}<%n@%M$> "
-setopt prompt_subst
-export RPROMPT="%~"
-#PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc"
@@ -55,8 +52,8 @@ echo -ne '\e[5 q'
 # Use beam shape cursor for each new prompt.
 preexec() { echo -ne '\e[5 q' ;}
 
-# Use lf to switch directories and bind it to ctrl-o
-lfcd () {
+# Use ranger to switch directories
+rcd () {
     tmp="$(mktemp)"
     lf -last-dir-path="$tmp" "$@"
     if [ -f "$tmp" ]; then
@@ -70,48 +67,32 @@ lfcd () {
     fi
 }
 
-bindkey -s '^o' 'lfcd\n'  # zsh
-
-# Load zsh-syntax-highlighting; should be last.
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-
-# Internet
 alias ytv="youtube-dl -f 'bestvideo[height<=720]+bestaudio/best[height<=720]' --output \"%(title)s.%(ext)s\" --add-metadata -i" # Download video link
 alias yta="youtube-dl --output \"%(title)s.%(ext)s\" --extract-audio --audio-format mp3 --audio-quality 0" # Download only audio
 
-shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o http.*pdf) ;}
 se() { du -a ~/.scripts/* ~/.config/* | awk '{print $2}' | fzf | xargs  -r $EDITOR ;}
-sv() { vcopy "$(du -a ~/.scripts/* ~/.config/* | awk '{print $2}' | fzf)" ;}
-vf() { fzf | xargs -r -I % $EDITOR % ;}
 dic() { sdcv "$1" ; yd "$1" ; }
 
-# Not of LARBS
 alias power="cat /sys/class/power-supply/BAT0/capacity"
 alias screen-off="xset dpms force off"
 alias bt-on="sudo rfkill unblock bluetooth"
 alias bt-off="sudo rfkill block bluetooth"
 alias pinknoise="play -t sl -r48000 -c2 -n synth -1 pinknoise .1"
-alias vim="nvim"
-alias h="hledger"
 
+# bluetooth
 bt() {
 	case "$1" in
 		"on") sudo rfkill unblock bluetooth ;;
 		"off") sudo rfkill block bluetooth ;;
-		*) echo "option=[on,off]" ;;
+		*) echo "option=[on|off]" ;;
 	esac
 }
-
-alias edit_config="$EDITOR $HOME/.config/zsh/.zshrc"
-kill_emacs_really() { for i in $(pgrep emacs); do print $i; kill -9 $i; done }
 
 cut-video () {
 	ffmpeg -i "$1" -ss "$2" -to "$3" -c copy cut-from-"$2"s+"$3"s."$1"
 }
 
-alias offscreen="sleep 1 && xset -display :0.0 dpms force off"
-
-### This is for the program `fast-p`
+### fast-p handler
 ppp() {
     open=zathura   # this will open pdf file withthe default PDF viewer on KDE, xfce, LXDE and perhaps on other desktops.
 
@@ -126,7 +107,8 @@ ppp() {
 }
 
 ## History file configuration
-[ ! -d "$HOME/.local/share/zsh" ] && mkdir "$HOME/.local/share/zsh"
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.local/share/zsh/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=10000
+
+clear
