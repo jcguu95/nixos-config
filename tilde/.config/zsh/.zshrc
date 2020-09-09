@@ -55,7 +55,7 @@ preexec() { echo -ne '\e[5 q' ;}
 # Use ranger to switch directories
 rcd () {
     tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
+    ranger --choosedir="$tmp" "$@"
     if [ -f "$tmp" ]; then
         dir="$(cat "$tmp")"
         rm -f "$tmp"
