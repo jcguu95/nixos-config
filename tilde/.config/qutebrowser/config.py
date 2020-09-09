@@ -157,7 +157,7 @@ c.colors.completion.category.border.bottom = base00
 c.colors.completion.item.selected.fg = base05
 
 # Background color of the selected completion item.
-c.colors.completion.item.selected.bg = base02
+c.colors.completion.item.selected.bg = base0F
 
 # Top border color of the selected completion item.
 c.colors.completion.item.selected.border.top = base02
@@ -190,9 +190,9 @@ c.colors.contextmenu.menu.bg = base00
 c.colors.contextmenu.menu.fg =  base05
 
 # Background color of the context menu’s selected item. If set to null, the Qt default is used.
-c.colors.contextmenu.selected.bg = base02
+c.colors.contextmenu.selected.bg = base0F
 
-#Foreground color of the context menu’s selected item. If set to null, the Qt default is used.
+# Foreground color of the context menu’s selected item. If set to null, the Qt default is used.
 c.colors.contextmenu.selected.fg = base05
 
 # Background color for the download bar.
@@ -269,7 +269,7 @@ c.colors.prompts.border = base00
 c.colors.prompts.bg = base00
 
 # Background color for the selected item in filename prompts.
-c.colors.prompts.selected.bg = base02
+c.colors.prompts.selected.bg = base0F
 
 # Foreground color of the statusbar.
 c.colors.statusbar.normal.fg = base0B
@@ -394,13 +394,13 @@ c.colors.tabs.pinned.selected.odd.fg = base05
 c.colors.tabs.selected.odd.fg = base05
 
 # Background color of selected odd tabs.
-c.colors.tabs.selected.odd.bg = base02
+c.colors.tabs.selected.odd.bg = base0F
 
 # Foreground color of selected even tabs.
 c.colors.tabs.selected.even.fg = base05
 
 # Background color of selected even tabs.
-c.colors.tabs.selected.even.bg = base02
+c.colors.tabs.selected.even.bg = base0F
 
 # Background color for webpages if unset (or empty to use the theme's
 # color).
