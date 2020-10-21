@@ -112,7 +112,8 @@ case "$mimetype" in
         img2txt --gamma=0.6 --width="$width" "$path" && exit 4 || exit 1;;
     # Display information about media files:
     video/* | audio/*)
-        exiftool "$path" && exit 5
+        ffmpegthumbnailer -i "${path}" -o "${cached}" -s 0 && exit 6
+        try exiftool "$path" && exit 5
         # Use sed to remove spaces so the output fits into the narrow window
         try mediainfo "$path" && { dump | trim | sed 's/  \+:/: /;';  exit 5; } || exit 1;;
 esac
